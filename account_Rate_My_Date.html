@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+
+<html>
+
+  <head>
+    <style>
+      .header {
+        height: 80px;
+        background-color: white;
+        border-top: 2px solid black;
+      }
+	  
+	 
+
+      .Info {
+        border-top: 2px solid black;
+        height: 500px;
+        background-color: #A9E3F0;
+        width: auto;
+        height: auto;
+        
+        position: relative;
+        top: 30%;
+        
+        margin: 0 auto;
+          border-radius: 25px;
+        border: 3px solid black;
+      }
+        
+        .avatar {
+  vertical-align: middle;
+  width: 25%;
+  height: 50%;
+  border-radius: 50%;
+}
+        .nav {
+	  height: 25px;
+	  border-top:2px solid black;
+	  font-size: 25px;
+	  font-family: "Courier New", Courier, monospace;
+	  }
+        
+      .accountheader {
+        height: 50px;
+        font-size: 30px;
+        
+        
+      }
+
+    </style>
+  </head>
+    
+    <!-- This is the div for the header -->
+    <div class=header>
+      <center>
+        <h1>
+          Rate My Date
+        </h1>
+      </center>
+    </div>
+     <!-- This is the div for the nav bar -->
+    <div class=nav>
+	<center>
+	<a href="#main.html">Home</a>
+	<a href="#about.html">About</a>
+	<a href="#account.html">Log Out</a>
+	</center>
+	</div>
+     <!-- This is the div for the body of account info-->
+    <div class=Info>
+        <center>
+          <h3 class=accountheader>
+            Account Info 
+          </h3>
+        </center>
+        <center>
+          <form action="http://localhost/account.php" method="post">
+            <span class="profilepic"><img src="avatar.png" alt="Avatar" class="avatar"><br>[<a href="avatar_change">change</a>]</span>
+            <br><br>
+            Email:<br>
+            <span class="field"></span>
+            <br><br>
+            Username:<br>
+            <span class="field"></span>
+            <br><br>
+            Password:<br>
+            <span class="field change "> [<a href="password_change">change password</a>]</span>
+            <br><br>
+          </form>
+        </center>
+      </div>
+
+    
+        
+
+
+</html>

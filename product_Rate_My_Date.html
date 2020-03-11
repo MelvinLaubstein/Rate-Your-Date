@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+
+<html>
+
+  <head>
+    <style>
+      .header {
+        height: 80px;
+        background-color: white;
+        border-top: 3px solid black;
+      }
+
+      .body {
+        border-top: 3px solid black;
+        height: 600px;
+        background-color: #A9E3F0;
+      }
+
+      .footer {
+        height: 80px;
+        border-top: 3px solid black;
+        background-color: black;
+        color: white;
+      }
+
+
+      .product {
+        float: center;
+        width: 300px;
+        height: 450px;
+        background-color: white;
+        position: relative;
+        top: 15%;
+        margin: 0 auto;
+        border-radius: 25px;
+        border: 3px solid black;
+      }
+
+    </style>
+  </head>
+
+  <body>
+
+    <!-- This is the div for the header -->
+    <div class=header>
+      <center>
+        <h1>
+          Rate My Date
+        </h1>
+      </center>
+    </div>
+
+    <!-- This is the div for the body -->
+    <div class=body>
+
+      <div class=product>
+        <center>
+          <h3>
+            Post about your ex!
+          </h3>
+        </center>
+        <center>
+          <form action="http://localhost/product.php" method="post" enctype="multipart/form-data">
+            Title:<br>
+            <input type="text" name="title" value="">
+            <br><br>
+            Price:<br>
+            <input type="text" name="price" value="">
+            <br><br>
+            Description:<br>
+			<textarea rows = "5" cols = "35" name = "description" value=""></textarea>
+			<br><br>
+            Contact Method:<br>
+			<input type="text" name = "contact" value=""></textarea>
+			<br><br>
+			Image:<br>
+            
+			
+    
+    <input type="file" name="image" id="image">
+			
+            <br><br>
+            <input type="submit" value="Submit">
+          </form>
+        </center>
+      </div>
+    </div>
+
+    <!-- This is the div for the footer -->
+    <div class=footer>
+      <center>
+        <h1>
+          Footer
+        </h1>
+      </center>
+    </div>
+
+  </body>
+
+</html>
+<!DOCTYPE html>
+
