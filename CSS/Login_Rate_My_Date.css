@@ -1,23 +1,19 @@
-.header {
+
+#header {
+	position: relative;
 	height: 80px;
+	width: 100%;
 	background-color: white;
 	border-top: 3px solid black;
-      }
+	border-bottom: 3px solid black;
+  }
 
-.body {
-	border-top: 3px solid black;
+#content{
 	height: 500px;
 	background-color: #A9E3F0;
   }
 
-.footer {
-	height: 80px;
-	border-top: 3px solid black;
-	background-color: black;
-	color: white;
-  }
-
-.login {
+#login {
 	float: left;
 	width: 300px;
 	height: 300px;
@@ -29,8 +25,17 @@
 	border-radius: 25px;
 	border: 3px solid black;
   }
+  
+.login_heading {
+	background-color: grey;
+	padding-top: 5.5px;
+	padding-bottom: 5.5px;
+	margin-top: -1.8px;
+	border-top-left-radius: 24px;
+	border-top-right-radius: 24px;
+  }
 
-.signup {
+#signup {
 	float: right;
 	width: 300px;
 	height: 300px;
@@ -42,3 +47,17 @@
 	border-radius: 25px;
 	border: 3px solid black;
   }
+  
+#footer {
+	height: 75px;
+	border-top: 3px solid black;
+	background-color: black;
+	color: white;
+  }
+  
+input[type="submit"] {
+	background-color: lightgreen;
+	border-radius: 25px solid black;
+	width: 100px;
+	height: 30px;
+}

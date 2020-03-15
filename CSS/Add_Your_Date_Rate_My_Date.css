@@ -1,0 +1,47 @@
+body {
+	background-image: url("https://images.pexels.com/photos/1363876/pexels-photo-1363876.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+}
+
+#header {
+	height: 80px;
+	background-color: white;
+	border-top: 3px solid black;
+}
+
+#content {
+	border-top: 3px solid black;
+	height: 600px;
+	background-color: #A9E3F0;
+}
+
+#footer {
+	height: 80px;
+	border-top: 3px solid black;
+	background-color: black;
+	color: white;
+}
+
+#nav {
+	height: 25px;
+	border-top:2px solid black;
+	font-size: 25px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
+.nav_link {
+	padding-left: 30px;
+	padding-right: 30px;
+}
+
+a:link {
+	color: white;
+}
+
+a:visited {
+	color: white;
+}
+
+a:hover {
+	color: blue;
+}

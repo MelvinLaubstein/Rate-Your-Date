@@ -1,10 +1,14 @@
-.header {
+body {
+	background-image: url("https://images.pexels.com/photos/1363876/pexels-photo-1363876.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+}
+
+#header {
 	height: 80px;
 	background-color: white;
 	border-top: 2px solid black;
 }
 
-.Info {
+#Info {
 	border-top: 2px solid black;
 	height: 500px;
 	background-color: #A9E3F0;
@@ -17,21 +21,39 @@
 	border: 3px solid black;
 }
 
-.avatar {
+#avatar {
 	vertical-align: middle;
 	width: 25%;
 	height: 50%;
 	border-radius: 50%;
 }
 
-.nav {
+#nav {
 	height: 25px;
 	border-top:2px solid black;
 	font-size: 25px;
-	font-family: "Courier New", Courier, monospace;
+	padding-top: 20px;
+	padding-bottom: 20px;
 }
 
-.accountheader {
+.nav_link {
+	padding-left: 30px;
+	padding-right: 30px;
+}
+
+#accountheader {
 	height: 50px;
 	font-size: 30px;
+}
+
+a:link {
+	color: white;
+}
+
+a:visited {
+	color: white;
+}
+
+a:hover {
+	color: blue;
 }
