@@ -10,7 +10,8 @@ body {
 
 #content {
 	border-top: 3px solid black;
-	height: 600px;
+	height: 100%;
+	padding-bottom: 30px;
 	background-color: #A9E3F0;
 }
 
