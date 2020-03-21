@@ -36,11 +36,6 @@
             
 			<br><br>
             
-			Email: <br>
-			<input type="email" name="email" class="email">
-			
-			<br><br>
-			
 			<input type="submit" name="admin" value="Login as Administrator"> <br> <br>
 			<input type="submit" name="rater" value="Login as Rater">
           </form>
@@ -52,7 +47,7 @@
    			<div class="login_heading">
 				<h3> Sign Up </h3>
 			</div>
-          <form action="" method="post">
+          <form action="Signup_Rate_My_Date.php" method="post">
 			<br>
             Username:<br>
             
@@ -71,21 +66,25 @@
 			<input type="text" name="email" class="email" value="">
 			
 			<br><br>
+			
+			Profile Picture: <br>
+			<input type="file" name="profile_picture">
+			
+			<br><br>
 			 
 			DOB: <br>
 			
-			<input type="date" id="DOB" value="">
-            
+			<input type="date" id="DOB" name="DOB" value="">
 						
 			<br><br>
 			 
 			Phone # (Area Code): <br>
-			<input type="text" id="Area" maxlength="3">
+			<input type="text" id="area" name="area" maxlength="3">
 						
 			<br><br>
 			 
 			Phone # (Seven Digits): <br>
-			<input type="text" id="Phone" maxlength="7">
+			<input type="text" id="phone" name="phone" maxlength="7">
 			
 			<br><br>
             

@@ -33,8 +33,20 @@
 			<form action="Add_Your_Date_Extra_Rate_My_Date.php" method="post" id="add_form">
 				<label for="name"> Their Name:
 					<input type="text" name="name" id="name" value="" required>
+				</label>
+					
+				<br>
 				
-
+				<label for="state"> Their State Initials:
+					<input type="text" name="state" id="state" value="" maxlength="2" required>
+				</label>
+				
+				<br>
+				
+				<label for="birth"> Their birth year:
+					<input type="text" name="birth" id="birth" value="" maxlength="4" required>
+				</label>
+				
 				<br><br>
 
 				<label for="picture"> A photo of them:
