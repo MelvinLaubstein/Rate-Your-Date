@@ -15,9 +15,10 @@
     </div>
 
     <!-- This is the div for the body -->
-    <div class="content">
-      <div class="login">
+    <div id="content">
+      <div id="login">
         <center>
+		
 			<div class="login_heading">
 				<h3> Login </h3>
 			</div>
@@ -26,19 +27,22 @@
 			<br><br>
             
 			Username: <br>
-            <input type="text" name="username" id="username" value="">
+            <input type="text" name="username" class="username" value="">
             
 			<br><br>
             
 			Password: <br>
-			<input type="text" name="password" id="password" value="">
+			<input type="text" name="password" class="password" value="">
             
 			<br><br>
             
 			Email: <br>
-			<input type="email" name="email" id="email">
+			<input type="email" name="email" class="email">
 			
-			<input type="submit" value="Submit">
+			<br><br>
+			
+			<input type="submit" name="admin" value="Login as Administrator"> <br> <br>
+			<input type="submit" name="rater" value="Login as Rater">
           </form>
         </center>
       </div>
@@ -48,37 +52,47 @@
    			<div class="login_heading">
 				<h3> Sign Up </h3>
 			</div>
-          <form action="http://localhost/insert.php" method="post">
+          <form action="" method="post">
 			<br>
             Username:<br>
             
-			<input type="text" name="username" value="">
+			<input type="text" name="username" class="username" value="">
            
 		   <br><br>
             
 			Password:<br>
             
-			<input type="text" name="password" value="">
+			<input type="text" name="password" class="password" value="">
             
 			<br><br>
            
 			Email: <br>
             
-			<input type="text" name="email" value="">
+			<input type="text" name="email" class="email" value="">
+			
+			<br><br>
+			 
+			DOB: <br>
+			
+			<input type="date" id="DOB" value="">
             
+						
+			<br><br>
+			 
+			Phone # (Area Code): <br>
+			<input type="text" id="Area" maxlength="3">
+						
+			<br><br>
+			 
+			Phone # (Seven Digits): <br>
+			<input type="text" id="Phone" maxlength="7">
+			
 			<br><br>
             
 			<input type="submit" value="Submit">
           </form>
         </center>
       </div>
-    </div>
-
-    <!-- This is the div for the footer -->
-    <div id="footer">
-      <center>
-        <h1> Rate My Date Industries, 2020 </h1>
-      </center>
     </div>
   </body>
 </html>
