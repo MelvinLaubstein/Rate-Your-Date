@@ -31,10 +31,16 @@
         <center>
 			<h3> Post about your ex! </h3>
 			<form action="Add_Your_Date_Extra_Rate_My_Date.php" method="post" id="add_form">
-				<label for="name"> Their Name:
-					<input type="text" name="name" id="name" value="" required>
+				<label for="fname"> Their First Name:
+					<input type="text" name="fname" id="fname" value="" required>
 				</label>
-					
+				
+				<br>
+				
+				<label for="lname"> Their Last Name: 
+					<input type="text" name="lname" id="lname" value="" required>
+				</label>
+				
 				<br>
 				
 				<label for="state"> Their State Initials:
