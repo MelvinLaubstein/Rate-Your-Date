@@ -22,7 +22,7 @@
 			<a href="My_Account_Rate_My_Date.php" class="nav_link">My Account</a> |
 			<a href="Search_Rate_My_Date.php" class="nav_link"> Search For Dated People </a> |
 			<a href="Add_Your_Date_Rate_My_Date.php" class="nav_link"> Add Your Date </a> |
-			<a href="#account.html" class="nav_link">Log Out</a>
+			<a href="Logout_Rate_My_Date.php" class="nav_link">Log Out</a>
 			</center>
 		</div>
 		 <!-- This is the div for the body of account info-->

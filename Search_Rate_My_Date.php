@@ -22,7 +22,7 @@
 			<a href="My_Account_Rate_My_Date.php" class="nav_link">My Account</a> |
 			<a href="Search_Rate_My_Date.php" class="nav_link"> Search For Dated People </a> |
 			<a href="Add_Your_Date_Rate_My_Date.php" class="nav_link"> Add Your Date </a> |
-			<a href="#account.html" class="nav_link">Log Out</a>
+			<a href="Logout_Rate_My_Date.php" class="nav_link">Log Out</a>
 		</center>
 	</div>
 
@@ -31,19 +31,16 @@
       <div id="search">
         <center>
             <form action="http://localhost/search.php" method="post">
-            Search for people you may know: 
-            <input type="text" name="search" value="">
-            <input type="submit" value="Submit">
-          </form>
+				<h2> Search for people you may know </h2>
+				
+				First Name: <input type="text" name="fname" id="fname" value=""> 
+				Last Name: <input type="text" name="lname" id="lname"> 
+				Their State (initials): <input type="text" name="state" id="state" maxlength="2" size="2"> 
+				Their year of birth: <input type="text" name="birthyear" id="birthyear" maxlength="4" size="4">
+				<input type="submit" value="Submit">
+			</form>
         </center>
       </div>  
-	  
-    <!-- This is the div for the footer -->
-    <div id="footer">
-      <center>
-        <h1> Footer </h1>
-      </center>
-    </div>
   </body>
 </html>
 

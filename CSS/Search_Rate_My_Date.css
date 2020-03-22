@@ -21,18 +21,12 @@ body {
 	padding-right: 30px;
 }
 
-#footer {
-	height: 80px;
-	border-top: 2px solid black;
-	background-color: black;
-	color: white;
-}
-
 #search {
 	padding-top: 10px;
 	border-top: 2px solid black;
-	height: 35px;
+	height: 50px;
 	background-color: white;
+	padding-bottom: 10px;
 }
 
 a:link {
