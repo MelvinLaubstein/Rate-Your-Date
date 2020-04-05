@@ -15,12 +15,12 @@
 	
 	<div id="nav">
 		<center>
-			Welcome, <?php session_start(); echo $_SESSION['username']; ?>
-			<a href="Homepage_Rate_My_Date.php" class="nav_link">Home</a> |
-			<a href="My_Account_Rate_My_Date.php" class="nav_link">My Account</a> |
-			<a href="Search_Rate_My_Date.php" class="nav_link"> Search For Dated People </a> |
-			<a href="Add_Your_Date_Rate_My_Date.php" class="nav_link"> Add Your Date </a> |
-			<a href="Logout_Rate_My_Date.php" class="nav_link">Log Out</a>
+		<b id="Username_Welcome"> Welcome, <?php session_start(); echo $_SESSION['username']; ?>
+		<a href="Homepage_Rate_My_Date.php" class="nav_link">Home</a> |
+		<a href="My_Account_Rate_My_Date.php" class="nav_link">My Account</a> |
+		<a href="Search_Rate_My_Date.php" class="nav_link"> Search For Dated People </a> |
+		<a href="Add_Your_Date_Rate_My_Date.php" class="nav_link"> Add Your Date </a> |
+		<a href="Logout_Rate_My_Date.php" class="nav_link">Log Out</a>
 		</center>
 	</div>
 	
