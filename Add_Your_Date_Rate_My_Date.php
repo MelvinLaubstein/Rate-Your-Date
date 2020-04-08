@@ -181,8 +181,8 @@
 				
 				<br><br>
 
-					Additional Comments/Your Story with Them <br>
-					<textarea placeholder="Type your comments/story here!" rows="10" cols="50"> </textarea>
+				Additional Comments/Your Story with Them <br>
+				<textarea placeholder="Type your comments/story here!" rows="10" cols="50"> </textarea>
 
 				<br><br>
 
