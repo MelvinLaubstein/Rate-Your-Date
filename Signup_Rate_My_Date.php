@@ -24,7 +24,8 @@
 		$adduser = "insert into rater (`rater_username`, `rater_password`, `rater_profile_picture`,`rater_email_address`, `rater_dob`, `rater_areacode`, `rater_phone_number`) VALUES 
 		('$username', '$password', '$prof', '$email', '$dob', '$area', '$phone')";
 		mysqli_query($conn, $adduser);
-		echo "<script> alert('Signup was successful. Now, please login.'); window.location.href='Login_Rate_My_Date.html' </script>"; 
+		echo "<script> alert('Signup was successful. Now, please login.'); 
+		window.location.href='Login_Rate_My_Date.html' </script>"; 
 	}
 
 ?>

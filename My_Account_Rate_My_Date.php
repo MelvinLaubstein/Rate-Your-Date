@@ -17,12 +17,12 @@
 		 <!-- This is the div for the nav bar -->
 		<div id="nav">
 			<center>
-			<b id="Username_Welcome"> Welcome, <?php session_start(); echo $_SESSION['username']; ?>
-			<a href="Homepage_Rate_My_Date.php" class="nav_link">Home</a> |
-			<a href="My_Account_Rate_My_Date.php" class="nav_link">My Account</a> |
-			<a href="Search_Rate_My_Date.php" class="nav_link"> Search For Dated People </a> |
-			<a href="Add_Your_Date_Rate_My_Date.php" class="nav_link"> Add Your Date </a> |
-			<a href="Logout_Rate_My_Date.php" class="nav_link">Log Out</a>
+				<b id="Username_Welcome"> Welcome, <?php session_start(); echo $_SESSION['username']; ?>
+				<a href="Homepage_Rate_My_Date.php" class="nav_link">Home</a> |
+				<a href="My_Account_Rate_My_Date.php" class="nav_link">My Account</a> |
+				<a href="Search_Rate_My_Date.php" class="nav_link"> Search For Dated People </a> |
+				<a href="Add_Your_Date_Rate_My_Date.php" class="nav_link"> Add Your Date </a> |
+				<a href="Logout_Rate_My_Date.php" class="nav_link">Log Out</a>
 			</center>
 		</div>
 		 <!-- This is the div for the body of account info-->
@@ -30,21 +30,36 @@
 			<center>
 			  <h3 id="accountheader"> Account Info </h3>
 			</center>
+			
 			<center>
 			  <form action="http://localhost/account.php" method="post">
 				<span id="profilepic"><img src="avatar.png" alt="Avatar" class="avatar"><br>[<a href="avatar_change">change</a>]</span>
+				
+				<?php
+				$servername = 'localhost';
+				$username = 'root';
+				$password = 'password';
+				$dbname = 'mydb';
+				$conn = new mysqli($servername, $username, $password, $dbname);
+				$img = mysqli_query($conn, "SELECT RATEE_PERSONAL_PICTURE FROM RATEE where RATEE_ID=2"); // TABLE QUERY USING FK
+				if(mysqli_num_rows($img) > 0) {
+					while($data = mysqli_fetch_assoc($img)) {
+					echo '<img src="data:image/jpeg;base64,' . $data['RATEE_PERSONAL_PICTURE'] . '" />';
+					}
+				}
+				?>
 				
 				<br><br>
 				
 				Email:<br>
 				
-				<span id="field"></span>
+				<span id="emailfield"></span>
 				
 				<br><br>
 				
 				Username:<br>
 				
-				<span id="field"></span>
+				<span id="usernamefield"></span>
 				
 				<br><br>
 				

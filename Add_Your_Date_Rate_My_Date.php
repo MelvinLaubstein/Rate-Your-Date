@@ -30,7 +30,7 @@
     <div id="content">
         <center>
 			<h3> Post about your ex! </h3>
-			<form action="Add_Your_Date_Extra_Rate_My_Date.php" method="post" id="add_form">
+			<form action="Add_Your_Date_Extra_Rate_My_Date.php" enctype="multipart/form-data" method="post" id="add_form">
 				<label for="fname"> Their First Name:
 					<input type="text" name="fname" id="fname" value="" required>
 				</label>
@@ -56,8 +56,8 @@
 				<br><br>
 
 				<label for="picture"> A photo of them:
-					<input type="file" name="picture" id="picture" required>
-				
+					<input type="file" name="picture" id="picture" required> </input>
+				</label>
 				
 				<br><br>
 
@@ -176,7 +176,7 @@
 
 				<h2> ------ Criminal Record ------ </h2>
 				<h3> Do They Have a Criminal Record? </h3>
-				Yes <input type="radio" name="criminal" value="1" required> </input>
+				Yes <input type="radio" name="criminal" value="1"> </input>
 				No <input type="radio" name="criminal" value="10"> </input>
 				
 				<br><br>
