@@ -18,6 +18,11 @@
 	$affectionInput = $_POST['affection'];
 	$careerInput = $_POST['career'];
 	$incomeInput = $_POST['income'];
+	
+	if (isset($_POST['comment'])) {
+		$commentInput = $_POST['comment'];
+	}
+	
 	if (isset($_POST['criminal'])) {
 		$criminalInput = $_POST['criminal'];
 	}
@@ -29,17 +34,54 @@
 		$Total_Score = (($Looks_Score + $Personality_Score + $Career_Score) / 3);
 	} else {
 		$Total_Score = (($Looks_Score + $Personality_Score + $Career_Score + $criminalInput) / 4);
-		echo "Looks: " . $Looks_Score . " ";
-		echo "Personality: " . $Personality_Score . " ";
-		echo "Career: " . $Career_Score . " ";
-		echo "Criminal: " . $criminalInput . " ";
-		echo "Total before division: " . ($Looks_Score + $Personality_Score + $Career_Score + $criminalInput);
 	}
- if (isset($_FILES['picture']['name'])) {
-		$pictureInput = base64_encode(file_get_contents($_FILES['picture']['tmp_name']));
-		$sqlRateeBasicInfo = "INSERT INTO RATEE (ratee_firstname, ratee_lastname, ratee_state, ratee_birthyear, ratee_overall_score, ratee_personal_picture) VALUES ('$firstNameInput', '$lastNameInput', 
-			'$stateInput', '$birthInput', '$Total_Score', '$pictureInput')";
+	
+  if (isset($_FILES['picture']['name'])) {
+	$pictureInput = base64_encode(file_get_contents($_FILES['picture']['tmp_name']));
+		$sqlRateeBasicInfo = "INSERT INTO RATEE (ratee_firstname, ratee_lastname, ratee_state, ratee_birthyear, ratee_overall_score, ratee_personal_picture) 
+		VALUES ('$firstNameInput', '$lastNameInput', '$stateInput', '$birthInput', '$Total_Score', '$pictureInput')";
 		mysqli_query($conn, $sqlRateeBasicInfo);
+		
+		$rateeLastInsertedId = mysqli_insert_id($conn);
+		
+		$sqlPersonality = "INSERT INTO PERSONALITY (personality_honesty_score, personality_empathy_score, personality_maturity_score, 
+		personality_sense_of_humor_score, personality_affection_score, personality_overall_score, ratee_ratee_id) VALUES ('$honestyInput', 
+		'$empathyInput','$maturityInput', '$humorInput', '$affectionInput', '$Personality_Score', '$rateeLastInsertedId')";
+		mysqli_query($conn, $sqlPersonality);
+		
+		$sqlLooks = "INSERT INTO LOOKS (looks_hygiene_score, looks_dress_appearance_score, looks_overall_score, ratee_ratee_id) VALUES ('$hygieneInput',
+		'$dressInput', '$Looks_Score', '$rateeLastInsertedId')";
+		mysqli_query($conn, $sqlLooks);
+		
+		$sqlCareer = "INSERT INTO CAREER (career_job_satisfaction_score, career_income_score, career_overall_score, ratee_ratee_id) VALUES ('$careerInput', 
+		'$incomeInput', '$Career_Score', '$rateeLastInsertedId')";
+		mysqli_query($conn, $sqlCareer);
+		
+		if (isset($_POST['criminal'])) {
+			$sqlCriminal = "INSERT INTO CRIMINAL_RECORD (criminal_record_status, ratee_ratee_id) VALUES ('$criminalInput', '$rateeLastInsertedId')";
+			mysqli_query($conn, $sqlCriminal);
+		}
+		
+		$currentUser = $_SESSION['username'];
+		
+		if (isset($_POST['comment'])) {
+			$checkRaterSql = "Select * from Rater where rater_username='$currentUser'";
+			if (mysqli_num_rows(mysqli_query($conn, $checkRaterSql)) > 0) {
+				$sqlComment = "INSERT INTO COMMENT (comment_date, comment_text, ratee_ratee_id, rater_rater_username, administrator_administrator_username) VALUES (NOW(), '$commentInput','$rateeLastInsertedId', '$currentUser', null)";
+				mysqli_query($conn, $sqlComment);
+			} 
+			
+			$checkAdminSql = "Select * from Administrator where administrator_username='$currentUser'";
+			if (mysqli_num_rows(mysqli_query($conn, $checkAdminSql)) > 0) {
+				$sqlComment = "INSERT INTO COMMENT (comment_date, comment_text, ratee_ratee_id, rater_rater_username, administrator_administrator_username) VALUES (NOW(), '$commentInput','$rateeLastInsertedId', null, '$currentUser')";
+				mysqli_query($conn, $sqlComment);
+			}
+		}
+		echo "<script> alert('Rating was added successfully.'); 
+		window.location.href='Search_Rate_My_Date.php' </script>"; 
+	} else {
+		echo "<script> alert('Rating was unsuccessful. You shouldn't see this.'); 
+		window.location.href='Add_Your_Date_Rate_My_Date.php' </script>"; 
 	}
 
 ?>
