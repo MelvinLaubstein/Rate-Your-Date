@@ -41,12 +41,22 @@
 				$password = 'password';
 				$dbname = 'mydb';
 				$conn = new mysqli($servername, $username, $password, $dbname);
-				$img = mysqli_query($conn, "SELECT RATEE_PERSONAL_PICTURE FROM RATEE where RATEE_ID=2"); // TABLE QUERY USING FK
-				if(mysqli_num_rows($img) > 0) {
-					while($data = mysqli_fetch_assoc($img)) {
-					echo '<img src="data:image/jpeg;base64,' . $data['RATEE_PERSONAL_PICTURE'] . '" />';
+				$loggedInUser = $_SESSION['username'];
+				
+				$checkRater = mysqli_query($conn, "SELECT RATER_PROFILE_PICTURE from RATER where RATER_USERNAME='$loggedInUser'");
+				if (mysqli_num_rows($checkRater) > 0) {
+					while($data = mysqli_fetch_assoc($checkRater)) {
+						echo '<img width="200px" height="200px" src="data:image/png;base64,' . $data['RATER_PROFILE_PICTURE'] . '" />';
 					}
 				}
+				/*
+				$img = mysqli_query($conn, "SELECT RATEE_PERSONAL_PICTURE from RATEE where RATEE_ID=2");
+				if(mysqli_num_rows($img) > 0) {
+					while($data = mysqli_fetch_assoc($img)) {
+						echo '<img width="200px" height="200px" src="data:image/png;base64,' . $data['RATEE_PERSONAL_PICTURE'] . '" />';
+					}
+				}
+				*/
 				?>
 				
 				<br><br>
