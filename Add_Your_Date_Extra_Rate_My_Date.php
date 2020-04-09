@@ -78,7 +78,7 @@
 			}
 		}
 		echo "<script> alert('Rating was added successfully.'); 
-		window.location.href='Search_Rate_My_Date.php' </script>"; 
+		window.location.href='Homepage_Rate_My_Date.php' </script>"; 
 	} else {
 		echo "<script> alert('Rating was unsuccessful. You shouldn't see this.'); 
 		window.location.href='Add_Your_Date_Rate_My_Date.php' </script>"; 
