@@ -32,54 +32,65 @@
 			</center>
 			
 			<center>
-			  <form action="http://localhost/account.php" method="post">
-				<span id="profilepic"><img src="avatar.png" alt="Avatar" class="avatar"><br>[<a href="avatar_change">change</a>]</span>
+				<form enctype='multipart/form-data' action='My_Account_Rate_My_Date.php' method='post'>
 				
 				<?php
-				$servername = 'localhost';
-				$username = 'root';
-				$password = 'password';
-				$dbname = 'mydb';
-				$conn = new mysqli($servername, $username, $password, $dbname);
-				$loggedInUser = $_SESSION['username'];
-				
-				$checkRater = mysqli_query($conn, "SELECT RATER_PROFILE_PICTURE from RATER where RATER_USERNAME='$loggedInUser'");
-				if (mysqli_num_rows($checkRater) > 0) {
-					while($data = mysqli_fetch_assoc($checkRater)) {
-						echo '<img width="200px" height="200px" src="data:image/png;base64,' . $data['RATER_PROFILE_PICTURE'] . '" />';
-					}
-				}
-				/*
-				$img = mysqli_query($conn, "SELECT RATEE_PERSONAL_PICTURE from RATEE where RATEE_ID=2");
-				if(mysqli_num_rows($img) > 0) {
-					while($data = mysqli_fetch_assoc($img)) {
-						echo '<img width="200px" height="200px" src="data:image/png;base64,' . $data['RATEE_PERSONAL_PICTURE'] . '" />';
-					}
-				}
-				*/
-				?>
-				
-				<br><br>
-				
-				Email:<br>
-				
-				<span id="emailfield"></span>
-				
-				<br><br>
-				
-				Username:<br>
-				
-				<span id="usernamefield"></span>
-				
-				<br><br>
-				
-				Password:<br>
-				
-				<span id="field change "> [<a href="password_change">change password</a>]</span>
-				
-				<br><br>
-			  
-			  </form>
+					$servername = 'localhost';
+					$username = 'root';
+					$password = 'password';
+					$dbname = 'mydb';
+					$conn = new mysqli($servername, $username, $password, $dbname);
+					$loggedInUser = $_SESSION['username'];
+					
+					$checkRater = mysqli_query($conn, "SELECT * from RATER where RATER_USERNAME='$loggedInUser'");
+					if (mysqli_num_rows($checkRater) > 0) {
+						while($data = mysqli_fetch_assoc($checkRater)) {
+							echo "<b> Your Profile Picture </b> <br>";
+							echo '<img width="200px" height="200px" src="data:image/png;base64,' . $data['RATER_PROFILE_PICTURE'] . '" />';
+							echo "<br>";
+							echo "<input id='picture' name='picture' type='file'>";
+							echo ("<input type='submit' name='picturetureSubmit' id='picturetureSubmit' value='Change Profile pictureture (Select a File First)'>");
+							echo "<br><br><br>";
+							echo ("Username: " . $loggedInUser);
+							echo "<br><br>";
+							echo "Old Password: " . "<input type='password' name='oldPassword' id='oldPassword'>" . " " . " New Password: " . "<input type='password' id='newPassword' name='newPassword'>" . " " . "<input type='submit' id='passwordSubmit' name='passwordSubmit' value='Change Password'>";
+							echo "<br><br>";
+							echo "Current Email Address: " . $data['RATER_EMAIL_ADDRESS'] . " <br><br> " . " New Email Address: " . "<input type='email' name='newEmail' id='newEmail'>" . "<input type='submit' id='emailSubmit' name='emailSubmit' value='Change Email Address'>";
+						
+							if (isset($_POST['picturetureSubmit'])) {
+							  if (isset($_FILES['picture']['name'])) {
+								$picture = base64_encode(file_get_contents($_FILES['picture']['tmp_name']));
+								mysqli_query($conn, "UPDATE RATER SET RATER_PROFILE_PICTURE='$picture' where RATER_USERNAME='$loggedInUser'");
+								echo "<script> window.location.href='My_Account_Rate_My_Date.php' </script>"; 	
+							  } else {
+
+							  }
+							} else {
+
+							}
+						
+							if (isset($_POST['emailSubmit'])) {
+								$newEmail = $_POST['newEmail'];
+								mysqli_query($conn, "UPDATE RATER SET RATER_EMAIL_ADDRESS='$newEmail' where RATER_USERNAME='$loggedInUser'");
+								echo "<script> alert('Your email address was successfully updated!'); </script>";
+								echo "<script> window.location.href='My_Account_Rate_My_Date.php' </script>"; 				
+							}
+							
+							if (isset($_POST['passwordSubmit'])) {
+								if (($_POST['oldPassword'] == $data['RATER_PASSWORD'])) {
+									$newPassword = $_POST['newPassword'];
+								mysqli_query($conn, "UPDATE RATER SET RATER_PASSWORD='$newPassword' where RATER_USERNAME='$loggedInUser'");
+								echo "<script> alert('Your password has been updated!'); </script>";
+								echo "<script> window.location.href='My_Account_Rate_My_Date.php'</script>";
+							} else {
+								echo "<script> alert('Your input for your old (Current) password is incorrect!') </script>";
+							}
+						}
+								echo "</form>";
+							}
+						}
+					?>
+			
 			</center>
 		</div>
 	</body>
