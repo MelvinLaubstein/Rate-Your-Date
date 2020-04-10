@@ -56,19 +56,17 @@
 							echo "<br><br>";
 							echo "Old Password: " . "<input type='password' name='oldPassword' id='oldPassword'>" . " " . " New Password: " . "<input type='password' id='newPassword' name='newPassword'>" . " " . "<input type='submit' id='passwordSubmit' name='passwordSubmit' value='Change Password'>";
 							echo "<br><br>";
-							echo "Current Email Address: " . $data['RATER_EMAIL_ADDRESS'] . " <br><br> " . " New Email Address: " . "<input type='email' name='newEmail' id='newEmail'>" . "<input type='submit' id='emailSubmit' name='emailSubmit' value='Change Email Address'>";
+							echo "Current Email Address: " . $data['RATER_EMAIL_ADDRESS'] . " <br><br> " . " New Email Address: " . "<input type='email' name='newEmail' id='newEmail'>" . "<input type='submit' id='emailSubmit' name='emailSubmit' value='Change Email Address'><br><br>";
+							echo "Current Phone Number: " . "(" . $data['RATER_AREA_CODE'] . ")" . " " . $data['RATER_PHONE_NUMBER'] . "<br><br>";
+							echo "Updated Phone Number: <input type='text' maxlength='3' minlength='3' id='areacode' name='areacode' placeholder='area code'> " . " " . "<input type='text' id='phone' name='phone' maxlength='7' minlength='7' placeholder='phone number'>" . "<input type='submit' name='phonesubmit' id='phonesubmit'>";
 						
 							if (isset($_POST['picturetureSubmit'])) {
 							  if (isset($_FILES['picture']['name'])) {
 								$picture = base64_encode(file_get_contents($_FILES['picture']['tmp_name']));
 								mysqli_query($conn, "UPDATE RATER SET RATER_PROFILE_PICTURE='$picture' where RATER_USERNAME='$loggedInUser'");
 								echo "<script> window.location.href='My_Account_Rate_My_Date.php' </script>"; 	
-							  } else {
-
 							  }
-							} else {
-
-							}
+							} 
 						
 							if (isset($_POST['emailSubmit'])) {
 								$newEmail = $_POST['newEmail'];
@@ -80,15 +78,25 @@
 							if (isset($_POST['passwordSubmit'])) {
 								if (($_POST['oldPassword'] == $data['RATER_PASSWORD'])) {
 									$newPassword = $_POST['newPassword'];
-								mysqli_query($conn, "UPDATE RATER SET RATER_PASSWORD='$newPassword' where RATER_USERNAME='$loggedInUser'");
-								echo "<script> alert('Your password has been updated!'); </script>";
-								echo "<script> window.location.href='My_Account_Rate_My_Date.php'</script>";
-							} else {
-								echo "<script> alert('Your input for your old (Current) password is incorrect!') </script>";
+									mysqli_query($conn, "UPDATE RATER SET RATER_PASSWORD='$newPassword' where RATER_USERNAME='$loggedInUser'");
+									echo "<script> alert('Your password has been updated!'); </script>";
+									echo "<script> window.location.href='My_Account_Rate_My_Date.php'</script>";
+								} else {
+									echo "<script> alert('Your input for your old (Current) password is incorrect!') </script>";
+								}
 							}
-						}
+							
+								if (isset($_POST['phonesubmit'])) {
+									$newAreaCode = $_POST['areacode'];
+									$newPhone = $_POST['phone'];
+									mysqli_query($conn, "UPDATE RATER SET RATER_AREA_CODE='$newAreaCode' where RATER_USERNAME='$loggedInUser'");
+									mysqli_query($conn, "UPDATE RATER SET RATER_PHONE_NUMBER='$newPhone' where RATER_USERNAME='$loggedInUser'");
+									echo "<script> alert('Your phone number has been updated!'); </script>";
+									echo "<script> window.location.href='My_Account_Rate_My_Date.php'</script>";
+							}
+							
+							}
 								echo "</form>";
-							}
 						} else if (mysqli_num_rows($checkAdministrator) > 0) {
 							while($data = mysqli_fetch_assoc($checkAdministrator)) {
 							echo "<b> Your Profile Picture </b> <br>";
@@ -101,19 +109,17 @@
 							echo "<br><br>";
 							echo "Old Password: " . "<input type='password' name='oldPassword1' id='oldPassword1'>" . " " . " New Password: " . "<input type='password' id='newPassword1' name='newPassword1'>" . " " . "<input type='submit' id='passwordSubmit1' name='passwordSubmit1' value='Change Password'>";
 							echo "<br><br>";
-							echo "Current Email Address: " . $data['ADMINISTRATOR_EMAIL_ADDRESS'] . " <br><br> " . " New Email Address: " . "<input type='email' name='newEmail1' id='newEmail1'>" . "<input type='submit' id='emailSubmit1' name='emailSubmit1' value='Change Email Address'>";
+							echo "Current Email Address: " . $data['ADMINISTRATOR_EMAIL_ADDRESS'] . " <br><br> " . " New Email Address: " . "<input type='email' name='newEmail1' id='newEmail1'>" . "<input type='submit' id='emailSubmit1' name='emailSubmit1' value='Change Email Address'><br><br>";
+							echo "Current Phone Number: " . "(" . $data['ADMINISTRATOR_AREA_CODE'] . ")" . " " . $data['ADMINISTRATOR_PHONE_NUMBER'] . "<br><br>";
+							echo "Updated Phone Number: <input type='text' maxlength='3' minlength='3' id='areacode1' name='areacode1' placeholder='area code'> " . " " . "<input type='text' id='phone1' name='phone1' maxlength='7' minlength='7' placeholder='phone number'>" . "<input type='submit' name='phonesubmit1' id='phonesubmit1'>";
 						
 							if (isset($_POST['picturetureSubmit1'])) {
 							  if (isset($_FILES['picture1']['name'])) {
 								$picture1 = base64_encode(file_get_contents($_FILES['picture1']['tmp_name']));
 								mysqli_query($conn, "UPDATE ADMINISTRATOR SET ADMINISTRATOR_PROFILE_PICTURE='$picture1' where ADMINISTRATOR_USERNAME='$loggedInUser'");
 								echo "<script> window.location.href='My_Account_Rate_My_Date.php' </script>"; 	
-							  } else {
-
-							  }
-							} else {
-
-							}
+							  } 
+							} 
 						
 							if (isset($_POST['emailSubmit1'])) {
 								$newEmail1 = $_POST['newEmail1'];
@@ -125,15 +131,25 @@
 							if (isset($_POST['passwordSubmit1'])) {
 								if (($_POST['oldPassword1'] == $data['ADMINISTRATOR_PASSWORD'])) {
 									$newPassword1 = $_POST['newPassword1'];
-								mysqli_query($conn, "UPDATE ADMINISTRATOR SET ADMINISTRATOR_PASSWORD='$newPassword1' where ADMINISTRATOR_USERNAME='$loggedInUser'");
-								echo "<script> alert('Your password has been updated!'); </script>";
-								echo "<script> window.location.href='My_Account_Rate_My_Date.php'</script>";
-							} else {
-								echo "<script> alert('Your input for your old (Current) password is incorrect!') </script>";
+									mysqli_query($conn, "UPDATE ADMINISTRATOR SET ADMINISTRATOR_PASSWORD='$newPassword1' where ADMINISTRATOR_USERNAME='$loggedInUser'");
+									echo "<script> alert('Your password has been updated!'); </script>";
+									echo "<script> window.location.href='My_Account_Rate_My_Date.php'</script>";
+								} else {
+									echo "<script> alert('Your input for your old (Current) password is incorrect!') </script>";
+								}
 							}
-						}
+							
+							if (isset($_POST['phonesubmit1'])) {
+								$newAreaCode1 = $_POST['areacode1'];
+								$newPhone1 = $_POST['phone1'];
+								mysqli_query($conn, "UPDATE ADMINISTRATOR SET ADMINISTRATOR_AREA_CODE='$newAreaCode1' where ADMINISTRATOR_USERNAME='$loggedInUser'");
+								mysqli_query($conn, "UPDATE ADMINISTRATOR SET ADMINISTRATOR_PHONE_NUMBER='$newPhone1' where ADMINISTRATOR_USERNAME='$loggedInUser'");
+									echo "<script> alert('Your phone number has been updated!'); </script>";
+									echo "<script> window.location.href='My_Account_Rate_My_Date.php'</script>";
+							}
+							
+							}
 								echo "</form>";
-							}
 						}
 					?>
 			
