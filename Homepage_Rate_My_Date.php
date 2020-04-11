@@ -15,7 +15,7 @@
 	
 	<div id="nav">
 		<center>
-		<b id="Username_Welcome"> Welcome, <?php session_start(); echo $_SESSION['username']; ?>
+		<span id="Username_Welcome"> <b> Welcome, <?php session_start(); echo $_SESSION['username']; ?> </b> </span>
 		<a href="Homepage_Rate_My_Date.php" class="nav_link">Home</a> |
 		<a href="My_Account_Rate_My_Date.php" class="nav_link">My Account</a> |
 		<a href="Search_Rate_My_Date.php" class="nav_link"> Search For Dated People </a> |

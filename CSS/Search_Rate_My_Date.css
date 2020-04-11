@@ -28,10 +28,13 @@ body {
 }
 
 #search {
+	position: absolute;
+	left: 180px;
 	padding-top: 10px;
 	border-top: 2px solid black;
 	height: 50px;
-	background-color: white;
+	width: 1000px;
+	background-color: purple;
 	padding-bottom: 10px;
 }
 

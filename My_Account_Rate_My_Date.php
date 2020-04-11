@@ -15,16 +15,16 @@
 		  </center>
 		</div>
 		 <!-- This is the div for the nav bar -->
-		<div id="nav">
-			<center>
-				<b id="Username_Welcome"> Welcome, <?php session_start(); echo $_SESSION['username']; ?>
-				<a href="Homepage_Rate_My_Date.php" class="nav_link">Home</a> |
-				<a href="My_Account_Rate_My_Date.php" class="nav_link">My Account</a> |
-				<a href="Search_Rate_My_Date.php" class="nav_link"> Search For Dated People </a> |
-				<a href="Add_Your_Date_Rate_My_Date.php" class="nav_link"> Add Your Date </a> |
-				<a href="Logout_Rate_My_Date.php" class="nav_link">Log Out</a>
-			</center>
-		</div>
+	<div id="nav">
+		<center>
+		<span id="Username_Welcome"> <b> Welcome, <?php session_start(); echo $_SESSION['username']; ?> </b> </span>
+		<a href="Homepage_Rate_My_Date.php" class="nav_link">Home</a> |
+		<a href="My_Account_Rate_My_Date.php" class="nav_link">My Account</a> |
+		<a href="Search_Rate_My_Date.php" class="nav_link"> Search For Dated People </a> |
+		<a href="Add_Your_Date_Rate_My_Date.php" class="nav_link"> Add Your Date </a> |
+		<a href="Logout_Rate_My_Date.php" class="nav_link">Log Out</a>
+		</center>
+	</div>
 		 <!-- This is the div for the body of account info-->
 		<div id="Info">
 			<center>
@@ -50,7 +50,7 @@
 							echo '<img width="200px" height="200px" src="data:image/png;base64,' . $data['RATER_PROFILE_PICTURE'] . '" />';
 							echo "<br>";
 							echo "<input id='picture' name='picture' type='file'>";
-							echo ("<input type='submit' name='picturetureSubmit' id='picturetureSubmit' value='Change Profile pictureture (Select a File First)'>");
+							echo ("<input type='submit' name='pictureSubmit' id='pictureSubmit' value='Change Profile Picture (Select a File First)'>");
 							echo "<br><br><br>";
 							echo ("Username: " . $loggedInUser);
 							echo "<br><br>";
@@ -60,7 +60,7 @@
 							echo "Current Phone Number: " . "(" . $data['RATER_AREA_CODE'] . ")" . " " . $data['RATER_PHONE_NUMBER'] . "<br><br>";
 							echo "Updated Phone Number: <input type='text' maxlength='3' minlength='3' id='areacode' name='areacode' placeholder='area code'> " . " " . "<input type='text' id='phone' name='phone' maxlength='7' minlength='7' placeholder='phone number'>" . "<input type='submit' name='phonesubmit' id='phonesubmit'>";
 						
-							if (isset($_POST['picturetureSubmit'])) {
+							if (isset($_POST['pictureSubmit'])) {
 							  if (isset($_FILES['picture']['name'])) {
 								$picture = base64_encode(file_get_contents($_FILES['picture']['tmp_name']));
 								mysqli_query($conn, "UPDATE RATER SET RATER_PROFILE_PICTURE='$picture' where RATER_USERNAME='$loggedInUser'");
@@ -103,7 +103,7 @@
 							echo '<img width="200px" height="200px" src="data:image/png;base64,' . $data['ADMINISTRATOR_PROFILE_PICTURE'] . '" />';
 							echo "<br>";
 							echo "<input id='picture1' name='picture1' type='file'>";
-							echo ("<input type='submit' name='picturetureSubmit1' id='picturetureSubmit1' value='Change Profile pictureture (Select a File First)'>");
+							echo ("<input type='submit' name='pictureSubmit1' id='pictureSubmit1' value='Change Profile picture (Select a File First)'>");
 							echo "<br><br><br>";
 							echo ("Username: " . $loggedInUser);
 							echo "<br><br>";
@@ -113,7 +113,7 @@
 							echo "Current Phone Number: " . "(" . $data['ADMINISTRATOR_AREA_CODE'] . ")" . " " . $data['ADMINISTRATOR_PHONE_NUMBER'] . "<br><br>";
 							echo "Updated Phone Number: <input type='text' maxlength='3' minlength='3' id='areacode1' name='areacode1' placeholder='area code'> " . " " . "<input type='text' id='phone1' name='phone1' maxlength='7' minlength='7' placeholder='phone number'>" . "<input type='submit' name='phonesubmit1' id='phonesubmit1'>";
 						
-							if (isset($_POST['picturetureSubmit1'])) {
+							if (isset($_POST['pictureSubmit1'])) {
 							  if (isset($_FILES['picture1']['name'])) {
 								$picture1 = base64_encode(file_get_contents($_FILES['picture1']['tmp_name']));
 								mysqli_query($conn, "UPDATE ADMINISTRATOR SET ADMINISTRATOR_PROFILE_PICTURE='$picture1' where ADMINISTRATOR_USERNAME='$loggedInUser'");

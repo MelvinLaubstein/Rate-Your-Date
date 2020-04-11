@@ -17,7 +17,7 @@
 	
 	<div id="nav">
 		<center>
-		<b id="Username_Welcome"> Welcome, <?php session_start(); echo $_SESSION['username']; ?>
+		<span id="Username_Welcome"> <b> Welcome, <?php session_start(); echo $_SESSION['username']; ?> </b> </span>
 		<a href="Homepage_Rate_My_Date.php" class="nav_link">Home</a> |
 		<a href="My_Account_Rate_My_Date.php" class="nav_link">My Account</a> |
 		<a href="Search_Rate_My_Date.php" class="nav_link"> Search For Dated People </a> |
@@ -71,12 +71,11 @@
 		} else {
 			$birthyear = NULL;
 		}
-		
-		echo "<br><br><br><br>";
-		echo "<table id='searchTable'>";
-		echo "<th id='ProfilePicture'> Picture </th><th id='PersonName'> Name </th><th id='BirthYear'> Birth Year </th><th id='PersonState'> Their State </th><th id='Ranking'> Their Overall Ranking </th><th> Comments </th>";
 
 		if ($firstName != null && $lastName != null && $state != null && $birthyear != null) {
+			echo "<br><br><br><br><br><br>";
+			echo "<table id='searchTable'>";
+			echo "<th id='ProfilePicture'> Picture </th><th id='PersonName'> Name </th><th id='BirthYear'> Birth Year </th><th id='PersonState'> Their State </th><th id='Ranking'> Their Overall Ranking </th><th> Comments </th>";
 			$displayResults = mysqli_query($conn, "SELECT * from 
 			(SELECT * from RATEE where (ratee_firstname like '$firstName%') OR (ratee_lastname like '$lastName%') 
 				OR (ratee_state='$state') OR (ratee_birthyear='$birthyear'))  
