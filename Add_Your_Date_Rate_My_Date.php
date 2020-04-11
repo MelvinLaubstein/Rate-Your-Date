@@ -91,7 +91,8 @@
 							}
 
 						} else {
-							echo "<script> alert('No results found! Make a new entry with the now-visible button!'); </script>";
+							echo "<script> alert('No results found! Redirecting you now to submit a new profile!'); </script>";
+							echo "<script> window.location.href='New_Person_Rate_My_Date.php' </script>";
 						}
 					} else {
 						echo "<script> alert('You need to fill in all four boxes to search!'); </script>";
@@ -272,8 +273,8 @@
 					
 					<br><br>
 
-					Additional Comments/Your Story with Them <br>
-					<textarea placeholder="Type your comments/story here!" name="comment" rows="10" cols="50"> </textarea>
+					Additional Comment/Your Story with Them <br>
+					<textarea placeholder="Type your comments/story here!" name="COMMENTS" rows="10" cols="50"> </textarea>
 
 					<br><br>
 					

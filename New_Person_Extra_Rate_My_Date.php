@@ -19,8 +19,8 @@
 	$careerInput = $_POST['career'];
 	$incomeInput = $_POST['income'];
 	
-	if (isset($_POST['comment'])) {
-		$commentInput = $_POST['comment'];
+	if (isset($_POST['COMMENTS'])) {
+		$commentInput = $_POST['COMMENTS'];
 	}
 	
 	if (isset($_POST['criminal'])) {
@@ -66,17 +66,17 @@
 		
 		$currentUser = $_SESSION['username'];
 		
-		if (isset($_POST['comment'])) {
+		if (isset($_POST['COMMENTS'])) {
 			$checkRaterSql = "Select * from Rater where rater_username='$currentUser'";
 			if (mysqli_num_rows(mysqli_query($conn, $checkRaterSql)) > 0) {
-				$sqlComment = "INSERT INTO COMMENT (comment_date, comment_text, ratee_ratee_id, rater_rater_username, administrator_administrator_username) VALUES (NOW(), '$commentInput','$rateeLastInsertedId', '$currentUser', null)";
-				mysqli_query($conn, $sqlComment);
+				$sqlCOMMENTS = "INSERT INTO COMMENTS (comments_date, comments_text, ratee_ratee_id, rater_rater_username, administrator_administrator_username) VALUES (NOW(), '$commentInput','$rateeLastInsertedId', '$currentUser', null)";
+				mysqli_query($conn, $sqlCOMMENTS);
 			} 
 			
 			$checkAdminSql = "Select * from Administrator where administrator_username='$currentUser'";
 			if (mysqli_num_rows(mysqli_query($conn, $checkAdminSql)) > 0) {
-				$sqlComment = "INSERT INTO COMMENT (comment_date, comment_text, ratee_ratee_id, rater_rater_username, administrator_administrator_username) VALUES (NOW(), '$commentInput','$rateeLastInsertedId', null, '$currentUser')";
-				mysqli_query($conn, $sqlComment);
+				$sqlCOMMENTS = "INSERT INTO COMMENTS (comments_date, comments_text, ratee_ratee_id, rater_rater_username, administrator_administrator_username) VALUES (NOW(), '$commentInput','$rateeLastInsertedId', null, '$currentUser')";
+				mysqli_query($conn, $sqlCOMMENTS);
 			}
 		}
 		echo "<script> alert('Rating was added successfully.'); 

@@ -36,7 +36,7 @@
 				Last Name: <input type="text" name="lastname" id="lastname"> 
 				Their State (initials): <input type="text" name="state" id="state" maxlength="2" size="2"> 
 				Their year of birth: <input type="text" name="birthyear" id="birthyear" maxlength="4" size="4">
-				<input type="submit" value="Submit">
+				<input type="submit" id="SearchPageSubmit" name="SearchPageSubmit" value="Submit">
 			</form>
         </center>
       </div> 
@@ -71,34 +71,36 @@
 		} else {
 			$birthyear = NULL;
 		}
-
+	if(isset($_POST['SearchPageSubmit'])) {
 		if ($firstName != null && $lastName != null && $state != null && $birthyear != null) {
 			echo "<br><br><br><br><br><br>";
 			echo "<table id='searchTable'>";
-			echo "<th id='ProfilePicture'> Picture </th><th id='PersonName'> Name </th><th id='BirthYear'> Birth Year </th><th id='PersonState'> Their State </th><th id='Ranking'> Their Overall Ranking </th><th> Comments </th>";
+			echo "<th id='ProfilePicture'> Picture </th><th id='PersonName'> Name </th><th id='BirthYear'> Birth Year </th><th id='PersonState'> Their State </th><th id='Ranking'> Their Overall Ranking </th><th> COMMENTS </th>";
 			$displayResults = mysqli_query($conn, "SELECT * from 
-			(SELECT * from RATEE where (ratee_firstname like '$firstName%') OR (ratee_lastname like '$lastName%') 
-				OR (ratee_state='$state') OR (ratee_birthyear='$birthyear'))  
-			RATEE INNER JOIN COMMENT on ratee.ratee_id = comment.ratee_ratee_id");
+			(SELECT * from RATEE where (ratee_firstname like '$firstName%') OR (ratee_lastname like '$lastName%') OR (ratee_state='$state') OR (ratee_birthyear='$birthyear'))  
+			RATEE INNER JOIN COMMENTS on ratee.ratee_id = comments.ratee_ratee_id");
 			if (mysqli_num_rows($displayResults) > 0) {
 				while($data = mysqli_fetch_assoc($displayResults)) {
-					if ($data['COMMENT_TEXT'] == " ") {
-						$Text = "No comment by this user.";
+					if ($data['COMMENTS_TEXT'] == " ") {
+						$Text = "No COMMENTS by this user.";
 					} else {
-						$Text = $data['COMMENT_TEXT'];
+						$Text = $data['COMMENTS_TEXT'];
 					}
 					
 					echo "<tr><td> Not Implemented Yet. </td><td>" . $data['RATEE_FIRSTNAME'] . " " . $data['RATEE_LASTNAME'] . "</td><td>" . $data['RATEE_BIRTHYEAR'] . "</td><td>" . $data['RATEE_STATE'] . "</td><td>" . $data['RATEE_OVERALL_SCORE'] . "</td><td>" .
-					"<table id='raterAndDate'><tr id='raterAndDate'><td id='raterAndDate'>" . "Written by " . $data['RATER_RATER_USERNAME'] . $data['ADMINISTRATOR_ADMINISTRATOR_USERNAME'] . " on " . $data['COMMENT_DATE'] . "</tr></td></table>" . $Text . "</td></tr>";
+					"<table id='raterAndDate'><tr id='raterAndDate'><td id='raterAndDate'>" . "Written by " . $data['RATER_RATER_USERNAME'] . $data['ADMINISTRATOR_ADMINISTRATOR_USERNAME'] . " on " . $data['COMMENTS_DATE'] . "</tr></td></table>" . $Text . "</td></tr>";
 		
 					}
 				} else {
 					echo "<script> alert('Your search results did not return any matches.') </script>";
-			}			
+				}			
 		
 		echo "</table>";
 
-		} 
+		} else {
+			echo "<script> alert('You need to fill in at least one box to search...') </script>";
+		}		
+	}		
 ?>
 
 	<style type="text/css"> 
