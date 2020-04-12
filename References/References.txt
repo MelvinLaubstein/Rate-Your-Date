@@ -6,6 +6,8 @@ Javaiskillingme. (2016, August 23).
 Problems uploading image to SQL. Retrieved from 
 https://stackoverflow.com/questions/39098687/problems-uploading-image-to-sql
 
+--------------------------------------------------------------------------------------------------------------------------------------------------
+
 * Using php to retrieve an image from the database
 Site: https://stackoverflow.com/questions/5525830/displaying-an-image-stored-in-a-mysql-blob
 Credit to: user499054
@@ -13,3 +15,18 @@ Credit to: user499054
 user499054. (2011, April 2). 
 displaying an image stored in a mysql blob. 
 Retrieved from https://stackoverflow.com/questions/5525830/displaying-an-image-stored-in-a-mysql-blob
+
+--------------------------------------------------------------------------------------------------------------------------------------------------
+
+*Using nested select statements to get only specific inner join rows
+Site: https://stackoverflow.com/questions/20635251/mysql-nested-select-statement-for-join
+Credit to: Kevin Holditch
+
+Kevin Holditch 4. (2013, December 17th). 
+MySQL - nested select statement for JOIN? Retrieved from https://stackoverflow.com/questions/20635251/mysql-nested-select-statement-for-join
+
+--------------------------------------------------------------------------------------------------------------------------------------------------
+*Submitting forms via javascript
+Site: https://stackoverflow.com/questions/932653/how-to-prevent-buttons-from-submitting-forms?rq=1
+Credit to: poundifdef
+poundifdef (2009, May 31). How to prevent buttons from submitting forms. Retrieved from https://stackoverflow.com/questions/932653/how-to-prevent-buttons-from-submitting-forms?rq=1

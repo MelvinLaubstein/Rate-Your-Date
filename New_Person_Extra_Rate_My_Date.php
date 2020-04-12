@@ -21,6 +21,8 @@
 	
 	if (isset($_POST['COMMENTS'])) {
 		$commentInput = $_POST['COMMENTS'];
+	} else {
+		$commentInput = null;
 	}
 	
 	if (isset($_POST['criminal'])) {
@@ -66,7 +68,6 @@
 		
 		$currentUser = $_SESSION['username'];
 		
-		if (isset($_POST['COMMENTS'])) {
 			$checkRaterSql = "Select * from Rater where rater_username='$currentUser'";
 			if (mysqli_num_rows(mysqli_query($conn, $checkRaterSql)) > 0) {
 				$sqlCOMMENTS = "INSERT INTO COMMENTS (comments_date, comments_text, ratee_ratee_id, rater_rater_username, administrator_administrator_username) VALUES (NOW(), '$commentInput','$rateeLastInsertedId', '$currentUser', null)";
@@ -78,7 +79,6 @@
 				$sqlCOMMENTS = "INSERT INTO COMMENTS (comments_date, comments_text, ratee_ratee_id, rater_rater_username, administrator_administrator_username) VALUES (NOW(), '$commentInput','$rateeLastInsertedId', null, '$currentUser')";
 				mysqli_query($conn, $sqlCOMMENTS);
 			}
-		}
 		echo "<script> alert('Rating was added successfully.'); 
 		window.location.href='Search_Rate_My_Date.php' </script>"; 
 	} else {

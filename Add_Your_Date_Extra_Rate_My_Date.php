@@ -7,6 +7,7 @@
 	$conn = new mysqli($servername, $username, $password, $dbname);
 	$theirId = $_POST['theirId'];
 	$theirId = (string) $theirId;
+	$updaterUsername = $_SESSION['username'];
 	$stateInput = $_POST['state1'];
 	$hygieneInput = $_POST['hygiene'];
 	$dressInput = $_POST['dress'];
@@ -54,51 +55,55 @@
 		$Total_Score = ($Total_Score + $OldScore) / 2;
 		$Total_Score = round($Total_Score,2);
 	}
-
-  if (isset($_FILES['picture']['name'])) {
-	$pictureInput = base64_encode(file_get_contents($_FILES['picture']['tmp_name']));
-		$sqlRateeBasicInfo = "UPDATE RATEE set ratee_state='$stateInput', ratee_overall_score='$Total_Score', ratee_personal_picture='$pictureInput' where ratee_id='$theirId'"; 
-		mysqli_query($conn, $sqlRateeBasicInfo);
-		
-		$sqlPersonality = "INSERT INTO PERSONALITY (personality_honesty_score, personality_empathy_score, personality_maturity_score, 
-		personality_sense_of_humor_score, personality_affection_score, personality_overall_score, ratee_ratee_id) VALUES ('$honestyInput', 
-		'$empathyInput','$maturityInput', '$humorInput', '$affectionInput', '$Personality_Score', '$theirId')";
-		mysqli_query($conn, $sqlPersonality);
-		
-		$sqlLooks = "INSERT INTO LOOKS (looks_hygiene_score, looks_dress_appearance_score, looks_overall_score, ratee_ratee_id) VALUES ('$hygieneInput',
-		'$dressInput', '$Looks_Score', '$theirId')";
-		mysqli_query($conn, $sqlLooks);
-		
-		$sqlCareer = "INSERT INTO CAREER (career_job_satisfaction_score, career_income_score, career_overall_score, ratee_ratee_id) VALUES ('$careerInput', 
-		'$incomeInput', '$Career_Score', '$theirId')";
-		mysqli_query($conn, $sqlCareer);
-		
-		if (isset($_POST['criminal'])) {
-			$sqlCriminal = "INSERT INTO CRIMINAL_RECORD (criminal_record_status, ratee_ratee_id) VALUES ('$criminalInput', '$theirId')";
-			mysqli_query($conn, $sqlCriminal);
-		}
-		
-		$currentUser = $_SESSION['username'];
-		
-		if (isset($_POST['COMMENTS'])) {
-			$checkRaterSql = "Select * from Rater where rater_username='$currentUser'";
-			if (mysqli_num_rows(mysqli_query($conn, $checkRaterSql)) > 0) {
-				$sqlCOMMENTS = "INSERT INTO COMMENTSS (comments_date, comments_text, ratee_ratee_id, rater_rater_username, administrator_administrator_username) VALUES (NOW(), '$commentInput','$theirId', '$currentUser', null)";
-				mysqli_query($conn, $sqlCOMMENTS);
-			} 
-			
-			$checkAdminSql = "Select * from Administrator where administrator_username='$currentUser'";
-			if (mysqli_num_rows(mysqli_query($conn, $checkAdminSql)) > 0) {
-				$sqlCOMMENTS = "INSERT INTO COMMENTSS (comments_date, comments_text, ratee_ratee_id, rater_rater_username, administrator_administrator_username) VALUES (NOW(), '$commentInput','$theirId', null, '$currentUser')";
-				mysqli_query($conn, $sqlCOMMENTS);
+	
+		$raterCheckDuplicate = mysqli_query($conn, "Select * from Comments where rater_rater_username='$updaterUsername' && ratee_ratee_id='$theirId'");
+		if (mysqli_num_rows($raterCheckDuplicate) < 1) {		
+		  if (isset($_FILES['picture']['name'])) {
+			$pictureInput = base64_encode(file_get_contents($_FILES['picture']['tmp_name']));
+				$sqlRateeBasicInfo = "UPDATE RATEE set ratee_state='$stateInput', ratee_overall_score='$Total_Score', ratee_personal_picture='$pictureInput' where ratee_id='$theirId'"; 
+				mysqli_query($conn, $sqlRateeBasicInfo);
+				
+				$sqlPersonality = "INSERT INTO PERSONALITY (personality_honesty_score, personality_empathy_score, personality_maturity_score, 
+				personality_sense_of_humor_score, personality_affection_score, personality_overall_score, ratee_ratee_id) VALUES ('$honestyInput', 
+				'$empathyInput','$maturityInput', '$humorInput', '$affectionInput', '$Personality_Score', '$theirId')";
+				mysqli_query($conn, $sqlPersonality);
+				
+				$sqlLooks = "INSERT INTO LOOKS (looks_hygiene_score, looks_dress_appearance_score, looks_overall_score, ratee_ratee_id) VALUES ('$hygieneInput',
+				'$dressInput', '$Looks_Score', '$theirId')";
+				mysqli_query($conn, $sqlLooks);
+				
+				$sqlCareer = "INSERT INTO CAREER (career_job_satisfaction_score, career_income_score, career_overall_score, ratee_ratee_id) VALUES ('$careerInput', 
+				'$incomeInput', '$Career_Score', '$theirId')";
+				mysqli_query($conn, $sqlCareer);
+				
+				if (isset($_POST['criminal'])) {
+					$sqlCriminal = "INSERT INTO CRIMINAL_RECORD (criminal_record_status, ratee_ratee_id) VALUES ('$criminalInput', '$theirId')";
+					mysqli_query($conn, $sqlCriminal);
+				}
+				
+				$currentUser = $_SESSION['username'];
+				
+				if (isset($_POST['COMMENTS'])) {
+					$checkRaterSql = "Select * from Rater where rater_username='$currentUser'";
+					if (mysqli_num_rows(mysqli_query($conn, $checkRaterSql)) > 0) {
+						$sqlCOMMENTS = "INSERT INTO COMMENTS (comments_date, comments_text, ratee_ratee_id, rater_rater_username, administrator_administrator_username) VALUES (NOW(), '$commentInput','$theirId', '$currentUser', null)";
+						mysqli_query($conn, $sqlCOMMENTS);
+					} 
+					
+					$checkAdminSql = "Select * from Administrator where administrator_username='$currentUser'";
+					if (mysqli_num_rows(mysqli_query($conn, $checkAdminSql)) > 0) {
+						$sqlCOMMENTS = "INSERT INTO COMMENTS (comments_date, comments_text, ratee_ratee_id, rater_rater_username, administrator_administrator_username) VALUES (NOW(), '$commentInput','$theirId', null, '$currentUser')";
+						mysqli_query($conn, $sqlCOMMENTS);
+					}
+				}
+				echo "<script> alert('Rating was added successfully.');
+				window.location.href='Search_Rate_My_Date.php' </script>"; 
+				
+			} else {
+				echo "<script> alert('Rating was unsuccessful. You shouldn't see this.'); 
+				window.location.href='Add_Your_Date_Rate_My_Date.php' </script>"; 
 			}
+		} else {
+			echo "<script> alert('You cannot review someone twice!'); window.location.href='Search_Rate_My_Date.php' </script>"; 
 		}
-		echo "<script> alert('Rating was added successfully.');
-		window.location.href='Search_Rate_My_Date.php' </script>"; 
-		
-	} else {
-		echo "<script> alert('Rating was unsuccessful. You shouldn't see this.'); 
-		window.location.href='Add_Your_Date_Rate_My_Date.php' </script>"; 
-	}
-
 ?>
