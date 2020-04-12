@@ -12,7 +12,7 @@
 	$deleteRateeNow = $_POST['hiddenDeleteRatee'];
 
 	if ($_POST['hiddenDeletePost'] !== "") {
-		$deletePostQuery = "DELETE FROM COMMENTS where comments_id='$deleteCommentsId'";
+		$deletePostQuery = "UPDATE COMMENTS set comments_text='' where comments_id='$deleteCommentsId'";
 		mysqli_query($conn, $deletePostQuery);
 		echo "<script> alert('Comment Deleted!'); 
 		window.location.href='Search_Rate_My_Date.php' </script>"; 
