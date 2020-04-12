@@ -101,22 +101,22 @@
 				while($data = mysqli_fetch_assoc($displayResults)) {			
 					echo "<tr><td> <img width='200px' height='200px' src='data:image/png;base64," . $data['RATEE_PERSONAL_PICTURE'] . "' /> </td><td>" . $data['RATEE_FIRSTNAME'] . " " . $data['RATEE_LASTNAME'] . "</td><td>" . $data['RATEE_BIRTHYEAR'] . "</td><td>" . $data['RATEE_STATE'] . "</td><td>" . $data['RATEE_OVERALL_SCORE'] . "</td><td>";
 						$displayComments = mysqli_query($conn, "SELECT * FROM COMMENTS where ratee_ratee_ID=" . $data['RATEE_ID'] . "");	
-						if (mysqli_num_rows($displayComments) > 0) {
-							while ($data = mysqli_fetch_assoc($displayComments)) {
-								$Text = $data['COMMENTS_TEXT'];
-								if ($Text != " " && $Text != "") {
-									echo "<div id='commentSeparator'><table class='raterAndDate'><tr class='raterAndDate'><td class='raterAndDate'>" . "Submitted by " . $data['RATER_RATER_USERNAME'] . $data['ADMINISTRATOR_ADMINISTRATOR_USERNAME'] . " on " . $data['COMMENTS_DATE'] . "</tr></td></table> <br>" . $Text . "<br><br>"; 
-								if ($data['RATER_RATER_USERNAME'] == $_SESSION['username'] || mysqli_num_rows($HideDeleteButtonQuery) > 0) {
-									echo "<input type='submit' name='EditTheAbove' value='Edit The Above Post' onclick='editThisPost(" . $data['COMMENTS_ID'] . ")'>  </button> <br><br> <input type='submit' name='deletePostPHP'  value='Delete The Above Post' onclick='deleteThisPost(" . $data['COMMENTS_ID'] .")'> <br><br> </div> ";
-									}
-								}
-
-								if (mysqli_num_rows($HideDeleteButtonQuery) > 0) {
-									echo "<td><input type='submit' value='Delete This Ratee' class='DeleteTheLeft' onclick='deleteThisRatee(". $data['RATEE_RATEE_ID'] . ")'> </td>";		
-								}
+					if (mysqli_num_rows($displayComments) > 0) {
+					while ($data2 = mysqli_fetch_assoc($displayComments)) {
+						$Text = $data2['COMMENTS_TEXT'];
+						if ($Text != " " && $Text != "") {
+							echo "<div id='commentSeparator'><table class='raterAndDate'><tr class='raterAndDate'><td class='raterAndDate'>" . "Submitted by " . $data2['RATER_RATER_USERNAME'] . $data2['ADMINISTRATOR_ADMINISTRATOR_USERNAME'] . " on " . $data2['COMMENTS_DATE'] . "</tr></td></table> <br>" . $Text . "<br><br>"; 
+						if ($data2['RATER_RATER_USERNAME'] == $_SESSION['username'] || mysqli_num_rows($HideDeleteButtonQuery) > 0) {
+							echo "<input type='submit' name='EditTheAbove' value='Edit The Above Post' onclick='editThisPost(" . $data2['COMMENTS_ID'] . ")'>  </button> <br><br> <input type='submit' name='deletePostPHP'  value='Delete The Above Post' onclick='deleteThisPost(" . $data2['COMMENTS_ID'] .")'> <br><br> </div> ";
+							}								
+						}
+					}
+						$HideDeleteButtonQuery = mysqli_query($conn, "SELECT * FROM ADMINISTRATOR WHERE administrator_username='" . $_SESSION['username'] . "'");	
+						if (mysqli_num_rows($HideDeleteButtonQuery) > 0) {
+							echo "<td><input type='submit' value='Delete This Ratee' class='DeleteTheLeft' onclick='deleteThisRatee(". $data['RATEE_ID'] . ")'> </td>";		
+						}
 							}
-							}	
-							echo "</tr>";							
+					echo "</tr>";								
 							}
 						echo "</table>";
 					echo "</form>";									
@@ -147,22 +147,22 @@
 				while($data = mysqli_fetch_assoc($displayResults)) {			
 					echo "<tr><td> <img width='200px' height='200px' src='data:image/png;base64," . $data['RATEE_PERSONAL_PICTURE'] . "' /> </td><td>" . $data['RATEE_FIRSTNAME'] . " " . $data['RATEE_LASTNAME'] . "</td><td>" . $data['RATEE_BIRTHYEAR'] . "</td><td>" . $data['RATEE_STATE'] . "</td><td>" . $data['RATEE_OVERALL_SCORE'] . "</td><td>";
 						$displayComments = mysqli_query($conn, "SELECT * FROM COMMENTS where ratee_ratee_ID=" . $data['RATEE_ID'] . "");	
-						if (mysqli_num_rows($displayComments) > 0) {
-							while ($data = mysqli_fetch_assoc($displayComments)) {
-								$Text = $data['COMMENTS_TEXT'];
-								if ($Text != " " && $Text != "") {
-									echo "<div id='commentSeparator'><table class='raterAndDate'><tr class='raterAndDate'><td class='raterAndDate'>" . "Submitted by " . $data['RATER_RATER_USERNAME'] . $data['ADMINISTRATOR_ADMINISTRATOR_USERNAME'] . " on " . $data['COMMENTS_DATE'] . "</tr></td></table> <br>" . $Text . "<br><br>"; 
-								if ($data['RATER_RATER_USERNAME'] == $_SESSION['username'] || mysqli_num_rows($HideDeleteButtonQuery) > 0) {
-									echo "<input type='submit' name='EditTheAbove' value='Edit The Above Post' onclick='editThisPost(" . $data['COMMENTS_ID'] . ")'>  </button> <br><br> <input type='submit' name='deletePostPHP'  value='Delete The Above Post' onclick='deleteThisPost(" . $data['COMMENTS_ID'] .")'> <br><br> </div> ";
-									}
-								}
-
-								if (mysqli_num_rows($HideDeleteButtonQuery) > 0) {
-									echo "<td><input type='submit' value='Delete This Ratee' class='DeleteTheLeft' onclick='deleteThisRatee(". $data['RATEE_RATEE_ID'] . ")'> </td>";		
-								}
+					if (mysqli_num_rows($displayComments) > 0) {
+					while ($data2 = mysqli_fetch_assoc($displayComments)) {
+						$Text = $data2['COMMENTS_TEXT'];
+						if ($Text != " " && $Text != "") {
+							echo "<div id='commentSeparator'><table class='raterAndDate'><tr class='raterAndDate'><td class='raterAndDate'>" . "Submitted by " . $data2['RATER_RATER_USERNAME'] . $data2['ADMINISTRATOR_ADMINISTRATOR_USERNAME'] . " on " . $data2['COMMENTS_DATE'] . "</tr></td></table> <br>" . $Text . "<br><br>"; 
+						if ($data2['RATER_RATER_USERNAME'] == $_SESSION['username'] || mysqli_num_rows($HideDeleteButtonQuery) > 0) {
+							echo "<input type='submit' name='EditTheAbove' value='Edit The Above Post' onclick='editThisPost(" . $data2['COMMENTS_ID'] . ")'>  </button> <br><br> <input type='submit' name='deletePostPHP'  value='Delete The Above Post' onclick='deleteThisPost(" . $data2['COMMENTS_ID'] .")'> <br><br> </div> ";
+							}								
+						}
+					}
+						$HideDeleteButtonQuery = mysqli_query($conn, "SELECT * FROM ADMINISTRATOR WHERE administrator_username='" . $_SESSION['username'] . "'");	
+						if (mysqli_num_rows($HideDeleteButtonQuery) > 0) {
+							echo "<td><input type='submit' value='Delete This Ratee' class='DeleteTheLeft' onclick='deleteThisRatee(". $data['RATEE_ID'] . ")'> </td>";		
+						}
 							}
-						}							
-							echo "</tr>";
+					echo "</tr>";		
 							}
 						echo "</table>";
 					echo "</form>";									
@@ -194,21 +194,21 @@
 					echo "<tr><td> <img width='200px' height='200px' src='data:image/png;base64," . $data['RATEE_PERSONAL_PICTURE'] . "' /> </td><td>" . $data['RATEE_FIRSTNAME'] . " " . $data['RATEE_LASTNAME'] . "</td><td>" . $data['RATEE_BIRTHYEAR'] . "</td><td>" . $data['RATEE_STATE'] . "</td><td>" . $data['RATEE_OVERALL_SCORE'] . "</td><td>";
 						$displayComments = mysqli_query($conn, "SELECT * FROM COMMENTS where ratee_ratee_ID=" . $data['RATEE_ID'] . "");	
 						if (mysqli_num_rows($displayComments) > 0) {
-							while ($data = mysqli_fetch_assoc($displayComments)) {
-								$Text = $data['COMMENTS_TEXT'];
-								if ($Text != " " && $Text != "") {
-									echo "<div id='commentSeparator'><table class='raterAndDate'><tr class='raterAndDate'><td class='raterAndDate'>" . "Submitted by " . $data['RATER_RATER_USERNAME'] . $data['ADMINISTRATOR_ADMINISTRATOR_USERNAME'] . " on " . $data['COMMENTS_DATE'] . "</tr></td></table> <br>" . $Text . "<br><br>"; 
-								if ($data['RATER_RATER_USERNAME'] == $_SESSION['username'] || mysqli_num_rows($HideDeleteButtonQuery) > 0) {
-									echo "<input type='submit' name='EditTheAbove' value='Edit The Above Post' onclick='editThisPost(" . $data['COMMENTS_ID'] . ")'>  </button> <br><br> <input type='submit' name='deletePostPHP'  value='Delete The Above Post' onclick='deleteThisPost(" . $data['COMMENTS_ID'] .")'> <br><br> </div> ";
-									}
-								}
-
-								if (mysqli_num_rows($HideDeleteButtonQuery) > 0) {
-									echo "<td><input type='submit' value='Delete This Ratee' class='DeleteTheLeft' onclick='deleteThisRatee(". $data['RATEE_RATEE_ID'] . ")'> </td>";		
-								}
+					while ($data2 = mysqli_fetch_assoc($displayComments)) {
+						$Text = $data2['COMMENTS_TEXT'];
+						if ($Text != " " && $Text != "") {
+							echo "<div id='commentSeparator'><table class='raterAndDate'><tr class='raterAndDate'><td class='raterAndDate'>" . "Submitted by " . $data2['RATER_RATER_USERNAME'] . $data2['ADMINISTRATOR_ADMINISTRATOR_USERNAME'] . " on " . $data2['COMMENTS_DATE'] . "</tr></td></table> <br>" . $Text . "<br><br>"; 
+						if ($data2['RATER_RATER_USERNAME'] == $_SESSION['username'] || mysqli_num_rows($HideDeleteButtonQuery) > 0) {
+							echo "<input type='submit' name='EditTheAbove' value='Edit The Above Post' onclick='editThisPost(" . $data2['COMMENTS_ID'] . ")'>  </button> <br><br> <input type='submit' name='deletePostPHP'  value='Delete The Above Post' onclick='deleteThisPost(" . $data2['COMMENTS_ID'] .")'> <br><br> </div> ";
+							}								
+						}
+					}
+						$HideDeleteButtonQuery = mysqli_query($conn, "SELECT * FROM ADMINISTRATOR WHERE administrator_username='" . $_SESSION['username'] . "'");	
+						if (mysqli_num_rows($HideDeleteButtonQuery) > 0) {
+							echo "<td><input type='submit' value='Delete This Ratee' class='DeleteTheLeft' onclick='deleteThisRatee(". $data['RATEE_ID'] . ")'> </td>";		
+						}
 							}
-						}							
-							echo "</tr>";
+					echo "</tr>";		
 							}
 						echo "</table>";
 					echo "</form>";									
@@ -240,20 +240,21 @@
 					echo "<tr><td> <img width='200px' height='200px' src='data:image/png;base64," . $data['RATEE_PERSONAL_PICTURE'] . "' /> </td><td>" . $data['RATEE_FIRSTNAME'] . " " . $data['RATEE_LASTNAME'] . "</td><td>" . $data['RATEE_BIRTHYEAR'] . "</td><td>" . $data['RATEE_STATE'] . "</td><td>" . $data['RATEE_OVERALL_SCORE'] . "</td><td>";
 						$displayComments = mysqli_query($conn, "SELECT * FROM COMMENTS where ratee_ratee_ID=" . $data['RATEE_ID'] . "");	
 						if (mysqli_num_rows($displayComments) > 0) {
-							while ($data = mysqli_fetch_assoc($displayComments)) {
-								$Text = $data['COMMENTS_TEXT'];
-								if ($Text != " " && $Text != "") {
-									echo "<div id='commentSeparator'><table class='raterAndDate'><tr class='raterAndDate'><td class='raterAndDate'>" . "Submitted by " . $data['RATER_RATER_USERNAME'] . $data['ADMINISTRATOR_ADMINISTRATOR_USERNAME'] . " on " . $data['COMMENTS_DATE'] . "</tr></td></table> <br>"									. $Text . "<br><br>"; 
-								if ($data['RATER_RATER_USERNAME'] == $_SESSION['username'] || mysqli_num_rows($HideDeleteButtonQuery) > 0) {
-									echo "<input type='submit' name='EditTheAbove' value='Edit The Above Post' onclick='editThisPost(" . $data['COMMENTS_ID'] . ")'>  </button> <br><br> <input type='submit' name='deletePostPHP'  value='Delete The Above Post' onclick='deleteThisPost(" . $data['COMMENTS_ID'] .")'> <br><br> </div> ";
-									}
-								}
-
-								if (mysqli_num_rows($HideDeleteButtonQuery) > 0) {
-									echo "<td><input type='submit' value='Delete This Ratee' class='DeleteTheLeft' onclick='deleteThisRatee(". $data['RATEE_RATEE_ID'] . ")'> </td>";		
-								}
+					while ($data2 = mysqli_fetch_assoc($displayComments)) {
+						$Text = $data2['COMMENTS_TEXT'];
+						if ($Text != " " && $Text != "") {
+							echo "<div id='commentSeparator'><table class='raterAndDate'><tr class='raterAndDate'><td class='raterAndDate'>" . "Submitted by " . $data2['RATER_RATER_USERNAME'] . $data2['ADMINISTRATOR_ADMINISTRATOR_USERNAME'] . " on " . $data2['COMMENTS_DATE'] . "</tr></td></table> <br>" . $Text . "<br><br>"; 
+						if ($data2['RATER_RATER_USERNAME'] == $_SESSION['username'] || mysqli_num_rows($HideDeleteButtonQuery) > 0) {
+							echo "<input type='submit' name='EditTheAbove' value='Edit The Above Post' onclick='editThisPost(" . $data2['COMMENTS_ID'] . ")'>  </button> <br><br> <input type='submit' name='deletePostPHP'  value='Delete The Above Post' onclick='deleteThisPost(" . $data2['COMMENTS_ID'] .")'> <br><br> </div> ";
+							}								
+						}
+					}
+						$HideDeleteButtonQuery = mysqli_query($conn, "SELECT * FROM ADMINISTRATOR WHERE administrator_username='" . $_SESSION['username'] . "'");	
+						if (mysqli_num_rows($HideDeleteButtonQuery) > 0) {
+							echo "<td><input type='submit' value='Delete This Ratee' class='DeleteTheLeft' onclick='deleteThisRatee(". $data['RATEE_ID'] . ")'> </td>";		
+						}
 							}
-						}							
+					echo "</tr>";				
 							echo "</tr>";
 							}
 						echo "</table>";
@@ -285,22 +286,22 @@
 				while($data = mysqli_fetch_assoc($displayResults)) {			
 					echo "<tr><td> <img width='200px' height='200px' src='data:image/png;base64," . $data['RATEE_PERSONAL_PICTURE'] . "' /> </td><td>" . $data['RATEE_FIRSTNAME'] . " " . $data['RATEE_LASTNAME'] . "</td><td>" . $data['RATEE_BIRTHYEAR'] . "</td><td>" . $data['RATEE_STATE'] . "</td><td>" . $data['RATEE_OVERALL_SCORE'] . "</td><td>";
 						$displayComments = mysqli_query($conn, "SELECT * FROM COMMENTS where ratee_ratee_ID=" . $data['RATEE_ID'] . "");	
-						if (mysqli_num_rows($displayComments) > 0) {
-							while ($data = mysqli_fetch_assoc($displayComments)) {
-								$Text = $data['COMMENTS_TEXT'];
-								if ($Text != " " && $Text != "") {
-									echo "<div id='commentSeparator'><table class='raterAndDate'><tr class='raterAndDate'><td class='raterAndDate'>" . "Submitted by " . $data['RATER_RATER_USERNAME'] . $data['ADMINISTRATOR_ADMINISTRATOR_USERNAME'] . " on " . $data['COMMENTS_DATE'] . "</tr></td></table> <br>" . $Text . "<br><br>"; 
-								if ($data['RATER_RATER_USERNAME'] == $_SESSION['username'] || mysqli_num_rows($HideDeleteButtonQuery) > 0) {
-									echo "<input type='submit' name='EditTheAbove' value='Edit The Above Post' onclick='editThisPost(" . $data['COMMENTS_ID'] . ")'>  </button> <br><br> <input type='submit' name='deletePostPHP'  value='Delete The Above Post' onclick='deleteThisPost(" . $data['COMMENTS_ID'] .")'> <br><br> </div> ";
-									}
-								}
-
-								if (mysqli_num_rows($HideDeleteButtonQuery) > 0) {
-									echo "<td><input type='submit' value='Delete This Ratee' class='DeleteTheLeft' onclick='deleteThisRatee(". $data['RATEE_RATEE_ID'] . ")'> </td>";		
-								}
+				if (mysqli_num_rows($displayComments) > 0) {
+					while ($data2 = mysqli_fetch_assoc($displayComments)) {
+						$Text = $data2['COMMENTS_TEXT'];
+						if ($Text != " " && $Text != "") {
+							echo "<div id='commentSeparator'><table class='raterAndDate'><tr class='raterAndDate'><td class='raterAndDate'>" . "Submitted by " . $data2['RATER_RATER_USERNAME'] . $data2['ADMINISTRATOR_ADMINISTRATOR_USERNAME'] . " on " . $data2['COMMENTS_DATE'] . "</tr></td></table> <br>" . $Text . "<br><br>"; 
+						if ($data2['RATER_RATER_USERNAME'] == $_SESSION['username'] || mysqli_num_rows($HideDeleteButtonQuery) > 0) {
+							echo "<input type='submit' name='EditTheAbove' value='Edit The Above Post' onclick='editThisPost(" . $data2['COMMENTS_ID'] . ")'>  </button> <br><br> <input type='submit' name='deletePostPHP'  value='Delete The Above Post' onclick='deleteThisPost(" . $data2['COMMENTS_ID'] .")'> <br><br> </div> ";
+							}								
+						}
+					}
+						$HideDeleteButtonQuery = mysqli_query($conn, "SELECT * FROM ADMINISTRATOR WHERE administrator_username='" . $_SESSION['username'] . "'");	
+						if (mysqli_num_rows($HideDeleteButtonQuery) > 0) {
+							echo "<td><input type='submit' value='Delete This Ratee' class='DeleteTheLeft' onclick='deleteThisRatee(". $data['RATEE_ID'] . ")'> </td>";		
+						}
 							}
-						}							
-							echo "</tr>";
+					echo "</tr>";		
 							}
 						echo "</table>";
 					echo "</form>";									
@@ -331,23 +332,23 @@
 				while($data = mysqli_fetch_assoc($displayResults)) {			
 					echo "<tr><td> <img width='200px' height='200px' src='data:image/png;base64," . $data['RATEE_PERSONAL_PICTURE'] . "' /> </td><td>" . $data['RATEE_FIRSTNAME'] . " " . $data['RATEE_LASTNAME'] . "</td><td>" . $data['RATEE_BIRTHYEAR'] . "</td><td>" . $data['RATEE_STATE'] . "</td><td>" . $data['RATEE_OVERALL_SCORE'] . "</td><td>";
 						$displayComments = mysqli_query($conn, "SELECT * FROM COMMENTS where ratee_ratee_ID=" . $data['RATEE_ID'] . "");	
-						if (mysqli_num_rows($displayComments) > 0) {
-							while ($data = mysqli_fetch_assoc($displayComments)) {
-								$Text = $data['COMMENTS_TEXT'];
-								if ($Text != " " && $Text != "") {
-									echo "<div id='commentSeparator'><table class='raterAndDate'><tr class='raterAndDate'><td class='raterAndDate'>" . "Submitted by " . $data['RATER_RATER_USERNAME'] . $data['ADMINISTRATOR_ADMINISTRATOR_USERNAME'] . " on " . $data['COMMENTS_DATE'] . "</tr></td></table> <br>" . $Text . "<br><br>"; 
-								if ($data['RATER_RATER_USERNAME'] == $_SESSION['username'] || mysqli_num_rows($HideDeleteButtonQuery) > 0) {
-									echo "<input type='submit' name='EditTheAbove' value='Edit The Above Post' onclick='editThisPost(" . $data['COMMENTS_ID'] . ")'>  </button> <br><br> <input type='submit' name='deletePostPHP'  value='Delete The Above Post' onclick='deleteThisPost(" . $data['COMMENTS_ID'] .")'> <br><br> </div> ";
-									}
-								}
-
-								if (mysqli_num_rows($HideDeleteButtonQuery) > 0) {
-									echo "<td><input type='submit' value='Delete This Ratee' class='DeleteTheLeft' onclick='deleteThisRatee(". $data['RATEE_RATEE_ID'] . ")'> </td>";		
-								}
+					if (mysqli_num_rows($displayComments) > 0) {
+					while ($data2 = mysqli_fetch_assoc($displayComments)) {
+						$Text = $data2['COMMENTS_TEXT'];
+						if ($Text != " " && $Text != "") {
+							echo "<div id='commentSeparator'><table class='raterAndDate'><tr class='raterAndDate'><td class='raterAndDate'>" . "Submitted by " . $data2['RATER_RATER_USERNAME'] . $data2['ADMINISTRATOR_ADMINISTRATOR_USERNAME'] . " on " . $data2['COMMENTS_DATE'] . "</tr></td></table> <br>" . $Text . "<br><br>"; 
+						if ($data2['RATER_RATER_USERNAME'] == $_SESSION['username'] || mysqli_num_rows($HideDeleteButtonQuery) > 0) {
+							echo "<input type='submit' name='EditTheAbove' value='Edit The Above Post' onclick='editThisPost(" . $data2['COMMENTS_ID'] . ")'>  </button> <br><br> <input type='submit' name='deletePostPHP'  value='Delete The Above Post' onclick='deleteThisPost(" . $data2['COMMENTS_ID'] .")'> <br><br> </div> ";
+							}								
+						}
+					}
+						$HideDeleteButtonQuery = mysqli_query($conn, "SELECT * FROM ADMINISTRATOR WHERE administrator_username='" . $_SESSION['username'] . "'");	
+						if (mysqli_num_rows($HideDeleteButtonQuery) > 0) {
+							echo "<td><input type='submit' value='Delete This Ratee' class='DeleteTheLeft' onclick='deleteThisRatee(". $data['RATEE_ID'] . ")'> </td>";		
+						}
 							}
-						}							
-							echo "</tr>";
-							}
+					echo "</tr>";		
+			}
 						echo "</table>";
 					echo "</form>";									
 			} else {
@@ -383,10 +384,8 @@
 							echo "<div id='commentSeparator'><table class='raterAndDate'><tr class='raterAndDate'><td class='raterAndDate'>" . "Submitted by " . $data2['RATER_RATER_USERNAME'] . $data2['ADMINISTRATOR_ADMINISTRATOR_USERNAME'] . " on " . $data2['COMMENTS_DATE'] . "</tr></td></table> <br>" . $Text . "<br><br>"; 
 						if ($data2['RATER_RATER_USERNAME'] == $_SESSION['username'] || mysqli_num_rows($HideDeleteButtonQuery) > 0) {
 							echo "<input type='submit' name='EditTheAbove' value='Edit The Above Post' onclick='editThisPost(" . $data2['COMMENTS_ID'] . ")'>  </button> <br><br> <input type='submit' name='deletePostPHP'  value='Delete The Above Post' onclick='deleteThisPost(" . $data2['COMMENTS_ID'] .")'> <br><br> </div> ";
-							}
-									
-
-					}
+							}								
+						}
 					}
 						$HideDeleteButtonQuery = mysqli_query($conn, "SELECT * FROM ADMINISTRATOR WHERE administrator_username='" . $_SESSION['username'] . "'");	
 						if (mysqli_num_rows($HideDeleteButtonQuery) > 0) {
