@@ -60,7 +60,7 @@
 	
 		$raterCheckDuplicate = mysqli_query($conn, "Select * from Comments where rater_rater_username='$updaterUsername' && ratee_ratee_id='$theirId'");
 		$administratorCheckDuplicate = mysqli_query($conn, "Select * from Comments where administrator_administrator_username='$updaterUsername' && ratee_ratee_id='$theirId'");
-		if (mysqli_num_rows($raterCheckDuplicate) < 1 && mysqli_num_rows($administratorCheckDuplicate) < 1) {		
+		if (mysqli_num_rows($raterCheckDuplicate) < 1) {		
 		  if (isset($_FILES['picture']['name'])) {
 			$pictureInput = base64_encode(file_get_contents($_FILES['picture']['tmp_name']));
 				$sqlRateeBasicInfo = "UPDATE RATEE set ratee_state='$stateInput', ratee_overall_score='$Total_Score', ratee_personal_picture='$pictureInput' where ratee_id='$theirId'"; 

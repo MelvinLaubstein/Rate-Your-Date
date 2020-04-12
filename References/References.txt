@@ -1,3 +1,8 @@
+* Various html, css, javascript, php, and sql syntax lookups
+Site:https://www.w3schools.com/default.asp
+
+Homepage. (n.d.). Retrieved from https://www.w3schools.com/default.asp
+
 * Using php to insert an image into the database
 Site: https://stackoverflow.com/questions/39098687/problems-uploading-image-to-sql
 Credit to: Javaiskillingme
