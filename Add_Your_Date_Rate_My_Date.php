@@ -84,10 +84,10 @@
 
 						echo "<table>";
 						$showSearch = mysqli_query($conn, "SELECT * from RATEE where (ratee_firstname like '$firstName%') OR (ratee_lastname like '$lastName%') OR (ratee_state='$state') OR (ratee_birthyear='$birthyear')");
-								echo "<tr><th id='PersonName'> Name </th><th id='BirthYear'> Birth Year </th><th id='PersonState'> Their State </th> <th> Affirm This Person </th></tr>";
+							echo "<tr><th id='AddDatePicture'> Photo of Them </th> <th id='PersonName'> Name </th><th id='BirthYear'> Birth Year </th><th id='PersonState'> Their State </th> <th> Affirm This Person </th></tr>";
 						if (mysqli_num_rows($showSearch) > 0) {
 							while($dataInitialSearchSql = mysqli_fetch_assoc($showSearch)) {
-								echo "<tr><td>" . $dataInitialSearchSql['RATEE_FIRSTNAME'] . " " . $dataInitialSearchSql['RATEE_LASTNAME'] . "</td><td>" . $dataInitialSearchSql['RATEE_BIRTHYEAR'] . "</td><td>" . $dataInitialSearchSql['RATEE_STATE'] . "</td><td> <button onclick='hideInitialSearch(" . $dataInitialSearchSql['RATEE_ID'] . ")' id=" . $dataInitialSearchSql['RATEE_ID'] . "> This is who I'm looking for! </button> </td></tr>";
+								echo "<tr><td> <img width='200px' height='200px' src='data:image/png;base64," . $dataInitialSearchSql['RATEE_PERSONAL_PICTURE'] . "' /> </td><td>" . $dataInitialSearchSql['RATEE_FIRSTNAME'] . " " . $dataInitialSearchSql['RATEE_LASTNAME'] . "</td><td>" . $dataInitialSearchSql['RATEE_BIRTHYEAR'] . "</td><td>" . $dataInitialSearchSql['RATEE_STATE'] . "</td><td> <button onclick='hideInitialSearch(" . $dataInitialSearchSql['RATEE_ID'] . ")' id=" . $dataInitialSearchSql['RATEE_ID'] . "> This is who I'm looking for! </button> </td></tr>";
 							}
 
 						} else {

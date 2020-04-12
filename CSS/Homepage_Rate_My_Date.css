@@ -2,6 +2,19 @@ body {
 	background-image: url("https://images.pexels.com/photos/1363876/pexels-photo-1363876.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
 }
 
+#Greeting {
+	max-width: 600px;
+	word-wrap: break-word;
+}
+
+#content {
+	border-top: 3px solid black;
+	height: 100%;
+	padding-bottom: 30px;
+	background-color: #A9E3F0;
+	color: black;
+}
+
 #Username_Welcome {
 	color: white;
 }

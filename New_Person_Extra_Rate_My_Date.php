@@ -22,7 +22,7 @@
 	if (isset($_POST['COMMENTS'])) {
 		$commentInput = $_POST['COMMENTS'];
 	} else {
-		$commentInput = null;
+		$commentInput = "";
 	}
 	
 	if (isset($_POST['criminal'])) {
@@ -67,7 +67,6 @@
 		}
 		
 		$currentUser = $_SESSION['username'];
-		
 			$checkRaterSql = "Select * from Rater where rater_username='$currentUser'";
 			if (mysqli_num_rows(mysqli_query($conn, $checkRaterSql)) > 0) {
 				$sqlCOMMENTS = "INSERT INTO COMMENTS (comments_date, comments_text, ratee_ratee_id, rater_rater_username, administrator_administrator_username) VALUES (NOW(), '$commentInput','$rateeLastInsertedId', '$currentUser', null)";

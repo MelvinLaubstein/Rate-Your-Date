@@ -21,6 +21,8 @@
 	
 	if (isset($_POST['COMMENTS'])) {
 		$commentInput = $_POST['COMMENTS'];
+	} else {
+		$commentInput = "";
 	}
 	
 	if (isset($_POST['criminal'])) {
@@ -57,7 +59,8 @@
 	}
 	
 		$raterCheckDuplicate = mysqli_query($conn, "Select * from Comments where rater_rater_username='$updaterUsername' && ratee_ratee_id='$theirId'");
-		if (mysqli_num_rows($raterCheckDuplicate) < 1) {		
+		$administratorCheckDuplicate = mysqli_query($conn, "Select * from Comments where administrator_administrator_username='$updaterUsername' && ratee_ratee_id='$theirId'");
+		if (mysqli_num_rows($raterCheckDuplicate) < 1 && mysqli_num_rows($administratorCheckDuplicate) < 1) {		
 		  if (isset($_FILES['picture']['name'])) {
 			$pictureInput = base64_encode(file_get_contents($_FILES['picture']['tmp_name']));
 				$sqlRateeBasicInfo = "UPDATE RATEE set ratee_state='$stateInput', ratee_overall_score='$Total_Score', ratee_personal_picture='$pictureInput' where ratee_id='$theirId'"; 
@@ -82,9 +85,7 @@
 				}
 				
 				$currentUser = $_SESSION['username'];
-				
-				if (isset($_POST['COMMENTS'])) {
-					$checkRaterSql = "Select * from Rater where rater_username='$currentUser'";
+				$checkRaterSql = "Select * from Rater where rater_username='$currentUser'";
 					if (mysqli_num_rows(mysqli_query($conn, $checkRaterSql)) > 0) {
 						$sqlCOMMENTS = "INSERT INTO COMMENTS (comments_date, comments_text, ratee_ratee_id, rater_rater_username, administrator_administrator_username) VALUES (NOW(), '$commentInput','$theirId', '$currentUser', null)";
 						mysqli_query($conn, $sqlCOMMENTS);
@@ -94,7 +95,6 @@
 					if (mysqli_num_rows(mysqli_query($conn, $checkAdminSql)) > 0) {
 						$sqlCOMMENTS = "INSERT INTO COMMENTS (comments_date, comments_text, ratee_ratee_id, rater_rater_username, administrator_administrator_username) VALUES (NOW(), '$commentInput','$theirId', null, '$currentUser')";
 						mysqli_query($conn, $sqlCOMMENTS);
-					}
 				}
 				echo "<script> alert('Rating was added successfully.');
 				window.location.href='Search_Rate_My_Date.php' </script>"; 

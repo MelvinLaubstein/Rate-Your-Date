@@ -29,4 +29,5 @@ MySQL - nested select statement for JOIN? Retrieved from https://stackoverflow.c
 *Submitting forms via javascript
 Site: https://stackoverflow.com/questions/932653/how-to-prevent-buttons-from-submitting-forms?rq=1
 Credit to: poundifdef
+
 poundifdef (2009, May 31). How to prevent buttons from submitting forms. Retrieved from https://stackoverflow.com/questions/932653/how-to-prevent-buttons-from-submitting-forms?rq=1
