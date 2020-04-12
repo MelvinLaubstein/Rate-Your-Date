@@ -378,7 +378,7 @@
 				$displayComments = mysqli_query($conn, "SELECT * FROM COMMENTS where ratee_ratee_ID=" . $data['RATEE_ID'] . "");	
 				if (mysqli_num_rows($displayComments) > 0) {
 					while ($data2 = mysqli_fetch_assoc($displayComments)) {
-						$Text = $data['COMMENTS_TEXT'];
+						$Text = $data2['COMMENTS_TEXT'];
 						if ($Text != " " && $Text != "") {
 							echo "<div id='commentSeparator'><table class='raterAndDate'><tr class='raterAndDate'><td class='raterAndDate'>" . "Submitted by " . $data2['RATER_RATER_USERNAME'] . $data2['ADMINISTRATOR_ADMINISTRATOR_USERNAME'] . " on " . $data2['COMMENTS_DATE'] . "</tr></td></table> <br>" . $Text . "<br><br>"; 
 						if ($data2['RATER_RATER_USERNAME'] == $_SESSION['username'] || mysqli_num_rows($HideDeleteButtonQuery) > 0) {
