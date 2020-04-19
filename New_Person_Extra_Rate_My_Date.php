@@ -1,10 +1,12 @@
 <?php 
+/* Connects to database and starts session */
 	session_start();
 	$servername = 'localhost';
 	$username = 'root';
 	$password = 'password';
 	$dbname = 'mydb';
 	$conn = new mysqli($servername, $username, $password, $dbname);
+/* Grabs all rating information from the form, setting it to PHP variables. */
 	$firstNameInput = $_POST['fname']; 
 	$lastNameInput = $_POST['lname'];
 	$stateInput = $_POST['state'];
@@ -18,7 +20,8 @@
 	$affectionInput = $_POST['affection'];
 	$careerInput = $_POST['career'];
 	$incomeInput = $_POST['income'];
-	
+/* Sets blank values for certain variables if nothing is inputted by the user. */	
+
 	if (isset($_POST['COMMENTS'])) {
 		$commentInput = $_POST['COMMENTS'];
 	} else {
@@ -28,18 +31,20 @@
 	if (isset($_POST['criminal'])) {
 		$criminalInput = $_POST['criminal'];
 	}
-	
+/* Sets each category's total score to be the average of that category's scores. */
 	$Looks_Score = (($hygieneInput + $dressInput) / 2);
 	$Personality_Score = (($honestyInput + $empathyInput + $maturityInput + $humorInput + $affectionInput) / 5);
 	$Career_Score = (($careerInput + $incomeInput) / 2);
+/* Calculates the overall total of all categories if no criminal record was inputted. */
 	if (!isset($criminalInput)) {
 		$Total_Score = (($Looks_Score + $Personality_Score + $Career_Score) / 3);
 		$Total_Score = round($Total_Score,2);
+		/* Calculates the overall total of all categories if criminal record was inputted. */
 	} else {
 		$Total_Score = (($Looks_Score + $Personality_Score + $Career_Score + $criminalInput) / 4);
 		$Total_Score = round($Total_Score,2);
 	}
-	
+/* Inserts all variables of inputted basic ratee information, as well as their ratings and any comment, into their respective tables. This code will, therefore, create a new ratee with all of this matching information. */
   if (isset($_FILES['picture']['name'])) {
 	$pictureInput = base64_encode(file_get_contents($_FILES['picture']['tmp_name']));
 		$sqlRateeBasicInfo = "INSERT INTO RATEE (ratee_firstname, ratee_lastname, ratee_state, ratee_birthyear, ratee_overall_score, ratee_personal_picture) 

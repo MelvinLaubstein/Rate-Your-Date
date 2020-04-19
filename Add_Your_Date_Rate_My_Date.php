@@ -70,12 +70,16 @@
 			<form action="Add_Your_Date_Extra_Rate_My_Date.php" method="post" enctype="multipart/form-data">
 				<div id="showInitialSearch">
 			<?php 		
+			/* Connects to the database */
 				$servername = "localhost";
 				$username = "root";
 				$password = "password";
 				$dbname = "mydb";
 				$conn = new mysqli($servername, $username, $password, $dbname);
+				/* If the user wants to add a new person to the database, they must first see if that person is already in it. This check is done here. This executes when the button is clicked to search. */
 				if (isset($_POST['initialSearch'])) {
+				/* If all four fields are filled in, grab their values from the form and search the database for *ANY* matches or similar matches. If the match exists, print out
+their basic information from the database, into a table, and a button by each ratee for the user to click if that person is who they're trying to rate. */
 					if (isset($_POST['fname']) && isset($_POST['lname']) && isset($_POST['state']) && isset($_POST['birth'])) {
 						$firstName = $_POST['fname'];
 						$lastName = $_POST['lname'];
@@ -89,14 +93,16 @@
 							while($dataInitialSearchSql = mysqli_fetch_assoc($showSearch)) {
 								echo "<tr><td> <img width='200px' height='200px' src='data:image/png;base64," . $dataInitialSearchSql['RATEE_PERSONAL_PICTURE'] . "' /> </td><td>" . $dataInitialSearchSql['RATEE_FIRSTNAME'] . " " . $dataInitialSearchSql['RATEE_LASTNAME'] . "</td><td>" . $dataInitialSearchSql['RATEE_BIRTHYEAR'] . "</td><td>" . $dataInitialSearchSql['RATEE_STATE'] . "</td><td> <button onclick='hideInitialSearch(" . $dataInitialSearchSql['RATEE_ID'] . ")' id=" . $dataInitialSearchSql['RATEE_ID'] . "> This is who I'm looking for! </button> </td></tr>";
 							}
-
+					/* If the initial search does not return anyone even close to their search (no results found in the database), then send them to create a new ratee. */
 						} else {
 							echo "<script> alert('No results found! Redirecting you now to submit a new profile!'); </script>";
 							echo "<script> window.location.href='New_Person_Rate_My_Date.php' </script>";
 						}
+					/* Ensure that all four buttons are selected */
 					} else {
 						echo "<script> alert('You need to fill in all four boxes to search!'); </script>";
 					}
+					/* Allow users to click a button that indicates that none of the results are who they're looking for. Sends them to create a new ratee. */
 						echo "</table>";
 						echo "<br><br> <button> <a id='Show_Form'href='New_Person_Rate_My_Date.php'> I don't see them in your results. I want to add them now!  </a></button>";
 				}

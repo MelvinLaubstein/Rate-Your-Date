@@ -3,7 +3,7 @@
   <head>
 	<title> Homepage </title>
 	<meta charset="UTF-8">
- 	<link rel="stylesheet" type="text/css" href="CSS/Homepage_Rate_My_Date.css">
+	<link rel="stylesheet" type="text/css" href="CSS/Homepage_Rate_My_Date.css">
   </head>
 
   <body>
